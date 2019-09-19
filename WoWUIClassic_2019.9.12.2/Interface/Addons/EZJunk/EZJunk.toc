@@ -1,0 +1,13 @@
+## Interface: 11302
+## Title: |cFF0dea38EZ|r Junk
+## Notes: Automatically sells junk
+## Title-zhCN: |CFFFF8000辅助|R 一键贩卖
+## Notes-zhCN: 与商人交易时一键/自动贩卖灰色垃圾物品，支持过滤
+## Title-zhTW: |CFFFF8000輔助|R 一鍵販賣
+## Notes-zhTW: 與商人交易時一鍵/自動販賣灰色垃圾物品，支援過濾
+## X-Repple: 辅助
+## Author: thisbarker
+## Version: 1.0.0
+
+Main.lua
+Main.xml

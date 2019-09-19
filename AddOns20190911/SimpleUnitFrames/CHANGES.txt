@@ -1,0 +1,10 @@
+tag 34697854a1540b91d886702fd51f8566b154ff24 11302-2
+Author:	Pneumatus <pneumatus@curseforge>
+Date:	Sun Aug 25 22:13:56 2019 +0100
+
+commit 7f6ca01429e988227b4417734b8dfd18071f5cc1
+Author: Pneumatus <pneumatus@curseforge>
+Date:   Tue Jun 4 13:56:16 2019 +0100
+
+    Fix string formatting on abbreviated HP/MP
+

@@ -1,0 +1,11 @@
+## Interface: 11302
+## Title: Combuctor Config
+## Author: Tuller and Jaliborc (João Cardoso)
+## Notes: An options menu for Combuctor
+## Title-zhCN: |cff7fff7f界面|R |CFFFF0000背包整合|R 设置模块
+## Title-zhTW: |cff7fff7f介面|R |CFFFF0000背包整合|R 設置模組
+## X-Repple: 界面
+## Dependencies: Combuctor
+## LoadOnDemand: 1
+
+..\Combuctor\modules\config.xml

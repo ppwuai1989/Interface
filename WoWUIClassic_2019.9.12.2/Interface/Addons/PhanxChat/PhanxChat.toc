@@ -1,0 +1,50 @@
+## Interface: 11302
+## Version: 8.0.0.1
+
+## Title: PhanxChat
+## Notes: Removes chat frame clutter and adds some functionality.
+## Title-zhCN: |CFFFF8000辅助|R 聊天增强
+## Notes-zhCN: 移除聊天框的杂物并加入一些功能。（复制网址、姓名上色、允许方向键等）
+## Title-zhTW: |CFFFF8000輔助|R 聊天增強
+## Notes-zhTW: 移除聊天框架的雜亂並新增一些功能。（複製網址、姓名上色、允許方向鍵等）
+## X-Repple: 辅助
+
+
+## Author: Phanx
+## X-Email: addons@phanx.net
+## X-License: All rights reserved. See LICENSE.txt
+## X-Website: https://github.com/phanx-wow/PhanxChat
+## X-Curse-Project-ID: 3331
+## X-WoWI-ID: 6323
+
+## OptionalDependencies: LibChatAnims
+## SavedVariables: PhanxChatDB
+
+Libs\LibStub\LibStub.lua
+Libs\LibChatAnims\LibChatAnims.lua
+Libs\PhanxConfig-Checkbox\PhanxConfig-Checkbox.lua
+Libs\PhanxConfig-Dropdown\PhanxConfig-Dropdown.lua
+Libs\PhanxConfig-EditBox\PhanxConfig-EditBox.lua
+Libs\PhanxConfig-Header\PhanxConfig-Header.lua
+Libs\PhanxConfig-OptionsPanel\PhanxConfig-OptionsPanel.lua
+Libs\PhanxConfig-Slider\PhanxConfig-Slider.lua
+
+Localization.lua
+Core.lua
+Options.lua
+
+Modules\EnableArrows.lua
+Modules\EnableResizeEdges.lua
+Modules\EnableSticky.lua
+Modules\FadeTime.lua
+Modules\HideButtons.lua
+Modules\HideFlash.lua
+Modules\HideNotices.lua
+Modules\HideRepeats.lua
+Modules\HideTextures.lua
+Modules\LinkURLs.lua
+Modules\LockTabs.lua
+Modules\MoveEditBox.lua
+Modules\ReplaceRealNames.lua
+Modules\ShortenChannelNames.lua
+Modules\ShowClassColors.lua

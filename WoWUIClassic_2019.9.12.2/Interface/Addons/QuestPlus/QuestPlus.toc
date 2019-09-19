@@ -1,0 +1,19 @@
+﻿## Interface: 11302
+## Title: QuestPlus
+## Notes: Quest Announce, Shows the quest level and Move the Quest Tracker!
+## Title-zhCN: |CFFFF8000辅助|R 系统任务增强
+## Notes-zhCN: 任务通报,显示任务等级并允许移动任务追踪列表
+## Title-zhTW: |CFFFF8000輔助|R 系統任務增強
+## Notes-zhTW: 任務通報,顯示任務等級並允許移動任務追蹤列表
+## X-Repple: 辅助
+## Author: jaliborc, zork, iceeagle, Isler, etc...
+## DefaultState: enabled
+## SavedVariablesPerCharacter: QA_Enable, QT_movable
+
+QuestTracker.lua
+
+#QuestCollapse.lua
+
+QuestLevel.lua
+
+QuestAnnounce.lua

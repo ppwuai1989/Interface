@@ -1,0 +1,17 @@
+## Interface: 11302
+## Version: v8.2.0
+## Title: BadBoy_History
+## Title-zhCN: |CFFFF8000辅助|R 垃圾信息过滤 历史记录
+## Title-zhTW: |CFFFF8000輔助|R 垃圾訊息阻擋 歷史記錄
+## Notes: Log all chat that's removed by the various BadBoy addons.
+## X-Repple: 辅助
+## Author: Funkydude
+## Dependencies: BadBoy
+## SavedVariables: BBHISTORY, BBGHISTORY, BBCCHISTORY
+## X-Category: Chat/Communication
+## X-License: All Rights Reserved: You are free to fork and modify on GitHub, please ask us about anything else.
+## X-Curse-Project-ID: 28451
+## X-WoWI-ID: 21134
+
+BadBoy_History.lua
+

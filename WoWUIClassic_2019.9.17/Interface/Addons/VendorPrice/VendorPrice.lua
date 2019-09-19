@@ -1,0 +1,148 @@
+VendorPrice = {}
+local VP = VendorPrice
+
+local SELL_PRICE_TEXT = format("%s:", SELL_PRICE)
+local COUNT_TEXT = " |cffAAAAFFx%d|r"
+
+local function ShouldShowPrice(tt)
+	if MerchantFrame:IsShown() then
+		local name = tt:GetOwner():GetName()
+		if name then -- bagnon sanity check
+			return name:find("Character") or name:find("TradeSkill")
+		end
+	end
+	return true
+end
+
+-- OnTooltipSetItem fires twice for recipes
+local function CheckRecipe(tt, classID, isOnTooltipSetItem)
+	if classID == LE_ITEM_CLASS_RECIPE and isOnTooltipSetItem then
+		tt.isFirstMoneyLine = not tt.isFirstMoneyLine
+		return not tt.isFirstMoneyLine
+	end
+	return true
+end
+
+local function GetAmountString(count, isShift)
+	local spacing = count < 10 and "  " or ""
+	return (count > 1 or isShift) and COUNT_TEXT:format(count)..spacing or ""
+end
+
+function VP:SetPrice(tt, count, item, isOnTooltipSetItem)
+	if ShouldShowPrice(tt) then
+		count = count or 1
+		item = item or select(2, tt:GetItem())
+		if item then
+			local sellPrice, classID = select(11, GetItemInfo(item))
+			if sellPrice and sellPrice > 0 and CheckRecipe(tt, classID, isOnTooltipSetItem) then
+				if IsShiftKeyDown() and count > 1 then
+					SetTooltipMoney(tt, sellPrice, nil, SELL_PRICE_TEXT..GetAmountString(1, true))
+				else
+					SetTooltipMoney(tt, sellPrice * count, nil, SELL_PRICE_TEXT..GetAmountString(count))
+				end
+				tt:Show()
+			end
+		end
+	end
+end
+
+local SetItem = {
+	SetAction = function(tt, slot)
+		if GetActionInfo(slot) == "item" then
+			VP:SetPrice(tt, GetActionCount(slot))
+		end
+	end,
+	SetAuctionItem = function(tt, auctionType, index)
+		local _, _, count = GetAuctionItemInfo(auctionType, index)
+		VP:SetPrice(tt, count)
+	end,
+	SetAuctionSellItem = function(tt)
+		local _, _, count = GetAuctionSellItemInfo()
+		VP:SetPrice(tt, count)
+	end,
+	SetBagItem = function(tt, bag, slot)
+		local _, count = GetContainerItemInfo(bag, slot)
+		VP:SetPrice(tt, count)
+	end,
+	--SetBagItemChild
+	--SetBuybackItem -- already shown
+	--SetCompareItem
+	SetCraftItem = function(tt, index, reagent)
+		local _, _, count = GetCraftReagentInfo(index, reagent)
+		 -- otherwise returns an empty link
+		local itemLink = GetCraftReagentItemLink(index, reagent)
+		VP:SetPrice(tt, count, itemLink)
+	end,
+	SetCraftSpell = function(tt)
+		VP:SetPrice(tt)
+	end,
+	--SetHyperlink -- item information is not readily available
+	SetInboxItem = function(tt, messageIndex, attachIndex)
+		local count, itemID
+		if attachIndex then
+			count = select(4, GetInboxItem(messageIndex, attachIndex))
+		else
+			count, itemID = select(14, GetInboxHeaderInfo(messageIndex))
+		end
+		VP:SetPrice(tt, count, itemID)
+	end,
+	SetInventoryItem = function(tt, unit, slot)
+		local count = GetInventoryItemCount(unit, slot)
+		VP:SetPrice(tt, count == 0 and 1 or count) -- equipped bags return 0
+	end,
+	--SetInventoryItemByID
+	--SetItemByID
+	SetLootItem = function(tt, slot)
+		local _, _, count = GetLootSlotInfo(slot)
+		VP:SetPrice(tt, count)
+	end,
+	SetLootRollItem = function(tt, rollID)
+		local _, _, count = GetLootRollItemInfo(rollID)
+		VP:SetPrice(tt, count)
+	end,
+	--SetMerchantCostItem -- alternate currency
+	--SetMerchantItem -- already shown
+	SetQuestItem = function(tt, questType, index)
+		local _, _, count = GetQuestItemInfo(questType, index)
+		VP:SetPrice(tt, count)
+	end,
+	SetQuestLogItem = function(tt, _, index)
+		local _, _, count = GetQuestLogRewardInfo(index)
+		VP:SetPrice(tt, count)
+	end,
+	SetSendMailItem = function(tt, index)
+		local count = select(4, GetSendMailItem(index))
+		VP:SetPrice(tt, count)
+	end,
+	SetTradePlayerItem = function(tt, index)
+		local _, _, count = GetTradePlayerItemInfo(index)
+		VP:SetPrice(tt, count)
+	end,
+	SetTradeSkillItem = function(tt, index, reagent)
+		local count
+		if reagent then
+			count = select(3, GetTradeSkillReagentInfo(index, reagent))
+		else -- show minimum instead of maximum count
+			count = GetTradeSkillNumMade(index)
+		end
+		VP:SetPrice(tt, count)
+	end,
+	SetTradeTargetItem = function(tt, index)
+		local _, _, count = GetTradeTargetItemInfo(index)
+		VP:SetPrice(tt, count)
+	end,
+}
+
+for method, func in pairs(SetItem) do
+	hooksecurefunc(GameTooltip, method, func)
+end
+
+ItemRefTooltip:HookScript("OnTooltipSetItem", function(tt)
+	local item = select(2, tt:GetItem())
+	if item then
+		local sellPrice, classID = select(11, GetItemInfo(item))
+		if sellPrice and sellPrice > 0 and CheckRecipe(tt, classID, true) then
+			SetTooltipMoney(tt, sellPrice, nil, SELL_PRICE_TEXT)
+		end
+	end
+end)
