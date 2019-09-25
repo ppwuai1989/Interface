@@ -72,7 +72,7 @@ function BFTooltipConfigFucn()
 			{[3]=true}
 
 		);
-		if not IsAddOnLoaded("FreebTip") then
+		--[[if not IsAddOnLoaded("FreebTip") then
 			ModManagement_RegisterCheckBox(
 				"BFTT",
 				ENABLE_NEWTYPE_BIGFOOT_TOOLTIP,
@@ -125,7 +125,7 @@ function BFTooltipConfigFucn()
 					end
 				end
 			);
-		end
+		end]]
 
 		ModManagement_RegisterCheckBox(
 			"BFTT",

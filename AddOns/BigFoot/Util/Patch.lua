@@ -5,8 +5,8 @@
 -- 本文件是用来修正一些来自WoW本身Interface的问题
 -------------------------------------------------------
 
+-- 屏蔽界面失效的提醒
 do
-	-- 屏蔽界面失效的提醒
 	UIParent:UnregisterEvent("ADDON_ACTION_BLOCKED");
 	_G["ChatFrameEditBox"] = _G["ChatFrame1EditBox"]
 end
@@ -67,13 +67,34 @@ do
 	end)
 end
 
+-- 设置一些常用的cvar
 do
-	-- 设置一些常用的cvar
-	SetCVar("autoLootDefault", "1")						--自动拾取
-	SetCVar("lootUnderMouse", "1")						--鼠标位置打开拾取
-	SetCVar("instantQuestText", "1")					--鼠标位置打开拾取
-	SetCVar("chatClassColorOverride", "0")				--聊天职业颜色
-	SetCVar("nameplateMaxDistance", "6e1")				--60码血条
-	SetCVar("ShowClassColorInFriendlyNameplate", "1")	--显示友放姓名版职业颜色
-	SetCVar("ShowClassColorInNameplate", "1")			--显示敌放姓名版职业颜色
+	local LoaderFrame = CreateFrame("FRAME")
+	LoaderFrame:RegisterEvent("PLAYER_LOGIN")
+
+	local function LoaderEvents(frame, event, arg1)
+		local patchVersion = '2019-09-11'
+
+		if (BigFoot_SysTemSetTab['UtilsPatchVersion'] ~= patchVersion) then
+			SetCVar("autoLootRate", "0")						--移除自动拾取多件物品时的延迟
+			SetCVar("lootUnderMouse", "1")						--鼠标位置打开拾取
+			-- SetCVar("overrideArchive", "0")						--反和谐
+			SetCVar("autoLootDefault", "1")						--自动拾取
+			SetCVar("instantQuestText", "1")					--立即显示任务文本
+			-- SetCVar("nameplateMaxDistance", "6e1")              --扩大姓名板显示范围到60码
+			SetCVar("chatClassColorOverride", "0")				--显示聊天职业颜色
+			SetCVar("ShowClassColorInNameplate", "1")			--显示姓名版职业颜色
+			SetCVar("ShowClassColorInFriendlyNameplate", "1")	--显示友方姓名版职业颜色
+
+			BigFoot_SysTemSetTab['UtilsPatchVersion'] = patchVersion
+		end
+	end
+
+	LoaderFrame:SetScript("OnEvent", LoaderEvents)
 end
+
+-- 背包显示剩余格子数量(同步正式服设置)
+hooksecurefunc("MainMenuBarBackpackButton_UpdateFreeSlots", function(...)
+	MainMenuBarBackpackButtonCount:SetText(string.format("(%s)", MainMenuBarBackpackButton.freeSlots));
+end)
+

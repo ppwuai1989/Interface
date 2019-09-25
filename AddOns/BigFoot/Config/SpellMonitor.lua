@@ -23,7 +23,7 @@ function SpellMonitorConfigFunc()
 	if IsConfigurableAddOn("EventAlertMod") then
 		ModManagement_RegisterMod(
 			"SpellMonitor",
-			"Interface\\Icons\\ability_shaman_watershield",
+			"Interface\\Icons\\trade_engineering",
 			SPELL_MONITOR,
 			"",
 			nil,
@@ -62,7 +62,7 @@ function SpellMonitorConfigFunc()
 				if (BigFoot_IsAddOnLoadedFromBigFoot("EventAlertMod")) then
 					if not EA_Options_Frame:IsVisible() then
 						EA_Options_Frame:Show();
-						ModManagementFrame:Hide();
+						HideUIPanel(ModManagementFrame);
 					end
 				end
 			end,

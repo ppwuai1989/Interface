@@ -80,7 +80,7 @@ function PartyModConfigFunc()
 	if (IsConfigurableAddOn("PartyAssist") or IsConfigurableAddOn("Clique") or IsConfigurableAddOn("BFQuest") or IsConfigurableAddOn("BFGuildBar")) then
 		ModManagement_RegisterMod(
 			"PartyToolkit",
-			"Interface\\Icons\\Ability_Warrior_VictoryRush",
+			"Interface\\Icons\\trade_engineering",
 			MOD_PARTY_ASSIST,
 			"",
 			nil,
@@ -201,7 +201,7 @@ function PartyModConfigFunc()
 					end
 					StaticPopup_Show("TEAMNOTICE_PARTY_COMMENT");
 					PlaySound(SOUNDKIT.IG_MAINMENU_OPTION);
-					ModManagementFrame:Hide();
+					HideUIPanel(ModManagementFrame);
 				end,
 				nil,
 				1
@@ -235,7 +235,7 @@ function PartyModConfigFunc()
 					end
 					StaticPopup_Show("TEAMNOTICE_SET_COMMENT");
 					PlaySound(SOUNDKIT.IG_MAINMENU_OPTION);
-					ModManagementFrame:Hide();
+					HideUIPanel(ModManagementFrame);
 				end,
 				nil,
 				1

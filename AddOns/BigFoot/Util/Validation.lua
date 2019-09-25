@@ -37,14 +37,21 @@ local function larger(a,b)
 	local adt = {}
 	local bdt = {}
 	local ad,bd
-	for ad in a:gmatch("%d+")  do
-		tinsert(adt,ad)
+	for ad in a:gmatch("%d+") do
+		tinsert(adt,tonumber(ad))
 	end
-	for bd in b:gmatch("%d+")  do
-		tinsert(bdt,bd)
+	for bd in b:gmatch("%d+") do
+		tinsert(bdt,tonumber(bd))
 	end
 
 	for i = 1,4 do
+		-- for classiccheck
+		if i == 1 then
+			if adt[i] > 2 or bdt[i] > 2 then
+				BigFoot_Config["BIGFOOT_VERSION_NEW"] = BIGFOOT_VERSION
+				return;
+			end
+		end
 		if adt[i] > bdt[i] then return true end
 		if adt[i] < bdt[i] then return false end
 	end

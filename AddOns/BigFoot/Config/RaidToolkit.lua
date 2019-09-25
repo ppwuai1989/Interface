@@ -93,21 +93,9 @@ function RaidToolkitConfigFunc()
 	local function loadRecount()
 		if (not BigFoot_IsAddOnLoaded("Recount")) then
 			BigFoot_LoadAddOn("Recount");
-		end
-		if (not BigFoot_IsAddOnLoaded("RecountFailBot")) then
-			BigFoot_LoadAddOn("RecountFailBot");
-		end
-		if (not BigFoot_IsAddOnLoaded("RecountGuessedAbsorbs")) then
-			BigFoot_LoadAddOn("RecountGuessedAbsorbs");
-		end
-		if (not BigFoot_IsAddOnLoaded("RecountThreat")) then
-			BigFoot_LoadAddOn("RecountThreat");
-		end
-		if (not BigFoot_IsAddOnLoaded("RecountDeathTrack")) then
-			BigFoot_LoadAddOn("RecountDeathTrack");
-		end
-		if (not BigFoot_IsAddOnLoaded("RecountHealAndGuessedAbsorbs")) then
-			BigFoot_LoadAddOn("RecountHealAndGuessedAbsorbs");
+			BigFoot_DelayCall(function ()
+				SlashCmdList["ACECONSOLE_RECOUNT"]("show")
+			end,1)
 		end
 	end
 
@@ -170,6 +158,10 @@ function RaidToolkitConfigFunc()
 							if (not BigFoot_IsAddOnLoaded("Skada")) then
 								loadRecount();
 							end
+						end
+					else
+						if (not BigFoot_IsAddOnLoaded("Skada")) then
+							loadRecount();
 						end
 					end
 				else

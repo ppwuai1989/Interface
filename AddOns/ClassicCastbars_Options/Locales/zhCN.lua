@@ -31,7 +31,6 @@ L["GENERAL"] = "通用设置"
 L["HEIGHT"] = "施法条高度"
 L["HEIGHT_TOOLTIP"] = "设置施法条高度."
 L["ICON_HIDE_BORDER"] = "隐藏图标边框"
-L["ICON_POS_TOOLTIP"] = "为施法图标设置坐标值."
 L["ICON_POS_X"] = "图标位置 X"
 L["ICON_POS_Y"] = "图标位置 Y"
 L["ICON_SIZE"] = "图标大小"
@@ -39,7 +38,10 @@ L["ICON_SIZE_TOOLTIP"] = "为施法条图标设置大小."
 L["LSM_TEXTURE_NOTE"] = [=[
 
 备注: 如果您使用了第三方纹理/字体, 并且随后删除了它们, 那么为了确保插件能够正常工作, 您必须手动在此重置它们.]=]
-L["NAMEPLATE"] = "角色头顶姓名条"
+L["MOVEMENT_DETECT"] = "移动取消施法条"
+L["MOVEMENT_DETECT_TOOLTIP"] = "开启此选项后，单位移动会取消施法条。高延迟下游戏建议关闭此选项，因为有时会出现错误地取消卡顿玩家施法条的情况。"
+L["NAMEPLATE"] = "姓名板"
+L["POSXY_TOOLTIP"] = "调整XY坐标偏移量以移动框体"
 L["PUSHBACK"] = "侦测施法延迟"
 L["PUSHBACK_TOOLTIP"] = [=[为施法时受到攻击以及减益效果 (例如: 语言诅咒) 而造成的延迟启用侦测功能.
 
@@ -64,6 +66,8 @@ L["TEST_TARGET_TOOLTIP"] = [=[在目标框体上显示施法条, 以便于您可
 注意: 您需要首先选择一个目标, 才能看到测试施法条.
 ]=]
 L["TEXT_COLOR"] = "文字颜色"
+L["TEXT_POS_X"] = "文字X轴坐标"
+L["TEXT_POS_Y"] = "文字Y轴坐标"
 L["TOGGLE_CASTBAR"] = "启用施法条"
 L["TOGGLE_CASTBAR_TOOLTIP"] = "为当前框体启用/停用施法条."
 L["WIDTH"] = "施法条宽度"
