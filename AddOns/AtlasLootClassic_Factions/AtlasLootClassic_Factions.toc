@@ -1,18 +1,21 @@
 ﻿## Interface: 11302
 ## Author: Lag
-## Version: v1.3.2
+## Version: v1.3.4
 ## Dependencies: AtlasLootClassic
 ## LoadOnDemand: 1
+
 ## Title: AtlasLootClassic |cFF0099FF[Factions]|r
-## Title-zhCN: AtlasLootClassic |cFF0099FF[Factions]|r
-## Title-zhTW: 副本戰利品查詢經典版 |cFF0099FF[陣營]|r
 ## Notes: AtlasLoot loot tables from Factions
-## Notes-zhCN: AtlasLoot 阵营掉落列表
-## Notes-zhTW: 陣營物品資料庫。
+## Title-zhCN: |CFFFF8000地图|R 掉落查询 |cFF0099FF[阵营]|R
+## Notes-zhCN: 阵营掉落列表
+## Title-zhTW: |CFFFF8000地圖|R 掉落查詢 |cFF0099FF[阵营]|R
+## Notes-zhTW: 阵营掉落列表
+## X-Repple: 地图
+
 ## X-Category: Map
 ## X-License: GPL v2
+
 ## X-AtlasLootClassic-LootModule: 1
-## X-Revision: BigFoot
 
 Locales\Locales.xml
 

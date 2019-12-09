@@ -25,8 +25,23 @@ local function ColorStatusBar(self, value)
             if (r==1 and g==1 and b==1) then r, g, b = 0, 0.9, 0.1 end
         end
         self:SetStatusBarColor(r, g, b)
-    elseif (addon.db.general.statusbarColor == "smooth") then
+    elseif (value and addon.db.general.statusbarColor == "smooth") then
         HealthBar_OnValueChanged(self, value, true)
+    end
+end
+
+--UnitFramesPlus MobHealth
+local function TinyTooltip_TextStatusBar_UpdateTextString(textStatusBar)
+    local textString = textStatusBar.TextString
+    if(textString) then
+        local value = textStatusBar:GetValue()
+        local valueMin, valueMax = textStatusBar:GetMinMaxValues()
+        if IsAddOnLoaded("UnitFramesPlus") then
+            if UnitFramesPlusDB["global"]["exacthp"] == 1 and UnitFramesPlus_GetUnitHealth then
+                value, valueMax = UnitFramesPlus_GetUnitHealth("mouseover")
+            end
+        end
+        TextStatusBar_UpdateTextStringWithValues(textStatusBar, textString, value, valueMin, valueMax)
     end
 end
 
@@ -35,8 +50,8 @@ LibEvent:attachEvent("VARIABLES_LOADED", function()
     if (ItemRefCloseButton and not IsAddOnLoaded("ElvUI")) then
         ItemRefCloseButton:SetSize(14, 14)
         ItemRefCloseButton:SetPoint("TOPRIGHT", -4, -4)
-        ItemRefCloseButton:SetNormalTexture("Interface\\\Buttons\\UI-StopButton")
-        ItemRefCloseButton:SetPushedTexture("Interface\\\Buttons\\UI-StopButton")
+        ItemRefCloseButton:SetNormalTexture("Interface\\Buttons\\UI-StopButton")
+        ItemRefCloseButton:SetPushedTexture("Interface\\Buttons\\UI-StopButton")
         ItemRefCloseButton:GetNormalTexture():SetVertexColor(0.9, 0.6, 0)
     end
     --StatusBar
@@ -50,12 +65,18 @@ LibEvent:attachEvent("VARIABLES_LOADED", function()
     bar.TextString:SetFont(NumberFontNormal:GetFont(), 11, "THINOUTLINE")
     bar.capNumericDisplay = true
     bar.lockShow = 1
+    bar:HookScript("OnShow", function(self)
+        ColorStatusBar(self)
+        --UnitFramesPlus MobHealth
+        TinyTooltip_TextStatusBar_UpdateTextString(self)
+    end)
     bar:HookScript("OnValueChanged", function(self, hp)
         if (hp <= 0) then
             local min, max = self:GetMinMaxValues()
             self.TextString:SetFormattedText("|cff999999%s|r |cffffcc33<%s>|r", AbbreviateLargeNumbers(max), DEAD)
         else
-            TextStatusBar_UpdateTextString(self)
+            --UnitFramesPlus MobHealth
+            TinyTooltip_TextStatusBar_UpdateTextString(self)
         end
         ColorStatusBar(self, hp)
     end)

@@ -2,8 +2,6 @@ local addonName, addon = ...
 local _G = _G
 local E = addon:Eve()
 
--- luacheck: globals ListFrame GameTooltip SLASH_AIO1 InterfaceOptionsFrame_OpenToCategory SLASH_CVAR1 AdvancedInterfaceOptionsSaved
-
 function addon:CVarExists(cvar)
 	return pcall(function() return GetCVarDefault(cvar) end)
 end
@@ -290,11 +288,11 @@ function E:PLAYER_LOGIN()
 				if cvarTable['description'] then --and _G[ cvarTable['description'] ] then
 					GameTooltip:AddLine(cvarTable['description'], 1, 1, 1, true)
 				end
-				GameTooltip:AddDoubleLine("默认值:", defaultValue, 0.2, 1, 0.6, 0.2, 1, 0.6)
+				GameTooltip:AddDoubleLine("Default Value:", defaultValue, 0.2, 1, 0.6, 0.2, 1, 0.6)
 
 				local modifiedBy = AdvancedInterfaceOptionsSaved.ModifiedCVars[ self.value:lower() ]
 				if modifiedBy then
-					GameTooltip:AddDoubleLine("最后修改由:", modifiedBy, 1, 0, 0, 1, 0, 0)
+					GameTooltip:AddDoubleLine("Last Modified By:", modifiedBy, 1, 0, 0, 1, 0, 0)
 				end
 
 				GameTooltip:Show()

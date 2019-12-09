@@ -6,6 +6,7 @@ DEX_FontList = {
 	"Fonts\\ARHei.TTF",
 	"Fonts\\FRIZQT__.TTF",
 	"Fonts\\ARKai_T.TTF",
+	"Fonts\\Fight.TTF",
 }
 
 DEX_TXT_CRUSH = "碾压!"
@@ -45,7 +46,7 @@ DEXOptionsFrameCheckButtons = {
 }
 
 DEXOptionsFrameSliders = {
-	["DEX_Font"] = {  title = "字型 ", minText="字型1", maxText="字型3", tooltipText = "设置文字字型"},
+	["DEX_Font"] = {  title = "字型 ", minText="字型1", maxText="字型4", tooltipText = "设置文字字型"},
 	["DEX_FontSize"] = {  title = "文字大小 ", minText="小", maxText="大", tooltipText = "设置文字的大小"},
 	["DEX_OutLine"] = {  title = "字型描边 ", minText="无", maxText="粗", tooltipText = "设置文字的描边效果"},
 	["DEX_Speed"] = {  title = "文字移动速度 ", minText="慢", maxText="快", tooltipText = "设置文字的移动速度"},

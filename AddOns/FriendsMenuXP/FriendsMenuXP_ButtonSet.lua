@@ -54,7 +54,7 @@ FriendsMenuXP_Buttons["TARGET"] = {
 
 FriendsMenuXP_Buttons["IGNORE"] = {
     text = IGNORE,
-    func = function(name) AddOrDelIgnore(name); end,
+    func = function(name) C_FriendList.AddOrDelIgnore(name); end,
     show = function(name)
         if(name == UnitName("player")) then return end;
         for i = 1, C_FriendList.GetNumIgnores() do
@@ -68,7 +68,7 @@ FriendsMenuXP_Buttons["IGNORE"] = {
 
 FriendsMenuXP_Buttons["CANCEL_IGNORE"] = {
     text = CANCEL..IGNORE,
-    func = function(name) AddOrDelIgnore(name); end,
+    func = function(name) C_FriendList.AddOrDelIgnore(name); end,
     show = function(name)
         if(name == UnitName("player")) then return end;
         for i = 1, C_FriendList.GetNumIgnores() do
@@ -79,14 +79,12 @@ FriendsMenuXP_Buttons["CANCEL_IGNORE"] = {
     end,
 }
 
---7.0 ["REPORT_PLAYER"] = { "REPORT_SPAM", "REPORT_BAD_LANGUAGE", "REPORT_BAD_NAME", "REPORT_CHEATING" },
-FriendsMenuXP_Buttons["REPORT_SPAM"] = {
+--classic ["REPORT_PLAYER"] = { "REPORT_SPAMMING", "REPORT_BAD_LANGUAGE", "REPORT_ABUSE", "REPORT_BAD_NAME", "REPORT_BAD_GUILD_NAME", "REPORT_PET_NAME", "REPORT_CHEATING" },
+--https://github.com/Gethe/wow-ui-source/blob/classic/FrameXML/StaticPopupSpecial.lua
+FriendsMenuXP_Buttons["REPORT_SPAMMING"] = {
     text = FMXP_BUTTON_REPORT_PLAYER_FOR..REPORT_SPAMMING,
     func = function(name, dropdown)
-        local dialog = StaticPopup_Show("CONFIRM_REPORT_SPAM_CHAT", name);
-        if ( dialog ) then
-            dialog.data = dropdown.unit or tonumber(dropdown.lineID);
-        end
+        PlayerReportFrame:InitiateReport(PLAYER_REPORT_TYPE_SPAM, name, PlayerLocation:CreateFromChatLineID(dropdown.lineID))
     end,
     show = function(name, dropdown) return dropdown.lineID end,--and CanComplainChat(dropdown.lineID) end,
 }
@@ -94,35 +92,17 @@ FriendsMenuXP_Buttons["REPORT_SPAM"] = {
 FriendsMenuXP_Buttons["REPORT_BAD_LANGUAGE"] = {
     text = FMXP_BUTTON_REPORT_PLAYER_FOR..REPORT_BAD_LANGUAGE,
     func = function(name, dropdown)
-        local dialog = StaticPopup_Show("CONFIRM_REPORT_BAD_LANGUAGE_CHAT", name);
-        if ( dialog ) then
-            dialog.data = dropdown.unit or tonumber(dropdown.lineID);
-        end
+        PlayerReportFrame:InitiateReport(PLAYER_REPORT_TYPE_LANGUAGE, name, PlayerLocation:CreateFromChatLineID(dropdown.lineID))
     end,
     show = function(name, dropdown) return dropdown.lineID end,--and CanComplainChat(dropdown.lineID) end,
 }
 
 FriendsMenuXP_Buttons["REPORT_BAD_NAME"] = {
     text = FMXP_BUTTON_REPORT_PLAYER_FOR..REPORT_BAD_NAME,
-    func = function(name, dropdownFrame)
-        if ( GMEuropaComplaintsEnabled() and not GMQuickTicketSystemThrottled() ) then
-            if (dropdownFrame.unit) then
-                HelpFrame_SetReportPlayerByUnitTag(ReportPlayerNameDialog, dropdownFrame.unit);
-            elseif (tonumber(dropdownFrame.lineID)) then
-                HelpFrame_SetReportPlayerByLineID(ReportPlayerNameDialog, tonumber(dropdownFrame.lineID));
-            elseif (dropdownFrame.battlefieldScoreIndex) then
-                HelpFrame_SetReportPlayerByBattlefieldScoreIndex(ReportPlayerNameDialog, dropdownFrame.battlefieldScoreIndex);
-            end
-
-            HelpFrame_ShowReportPlayerNameDialog();
-        else
-            UIErrorsFrame:AddMessage(ERR_REPORT_SUBMISSION_FAILED , 1.0, 0.1, 0.1, 1.0);
-            local info = ChatTypeInfo["SYSTEM"];
-            if ( dropdownFrame.chatFrame ) then
-                dropdownFrame.chatFrame:AddMessage(ERR_REPORT_SUBMISSION_FAILED, info.r, info.g, info.b);
-            else
-                DEFAULT_CHAT_FRAME:AddMessage(ERR_REPORT_SUBMISSION_FAILED, info.r, info.g, info.b);
-            end
+    func = function(name, dropdown)
+        local dialog = StaticPopup_Show("PLAYER_REPORT_TYPE_BAD_PLAYER_NAME", name);
+        if ( dialog ) then
+            dialog.data = dropdown.unit or tonumber(dropdown.lineID);
         end
     end,
     show = function(name, dropdown) return dropdown.lineID end, --and CanComplainChat(dropdown.lineID) end,
@@ -130,25 +110,10 @@ FriendsMenuXP_Buttons["REPORT_BAD_NAME"] = {
 
 FriendsMenuXP_Buttons["REPORT_CHEATING"] = {
     text = FMXP_BUTTON_REPORT_PLAYER_FOR..REPORT_CHEATING,
-    func = function(name, dropdownFrame)
-        if ( GMEuropaComplaintsEnabled() and not GMQuickTicketSystemThrottled() ) then
-            if (dropdownFrame.unit) then
-                HelpFrame_SetReportPlayerByUnitTag(ReportCheatingDialog, dropdownFrame.unit);
-            elseif (tonumber(dropdownFrame.lineID)) then
-                HelpFrame_SetReportPlayerByLineID(ReportCheatingDialog, tonumber(dropdownFrame.lineID));
-            elseif (dropdownFrame.battlefieldScoreIndex) then
-                HelpFrame_SetReportPlayerByBattlefieldScoreIndex(ReportCheatingDialog, dropdownFrame.battlefieldScoreIndex);
-            end
-
-            HelpFrame_ShowReportCheatingDialog();
-        else
-            UIErrorsFrame:AddMessage(ERR_REPORT_SUBMISSION_FAILED , 1.0, 0.1, 0.1, 1.0);
-            local info = ChatTypeInfo["SYSTEM"];
-            if ( dropdownFrame.chatFrame ) then
-                dropdownFrame.chatFrame:AddMessage(ERR_REPORT_SUBMISSION_FAILED, info.r, info.g, info.b);
-            else
-                DEFAULT_CHAT_FRAME:AddMessage(ERR_REPORT_SUBMISSION_FAILED, info.r, info.g, info.b);
-            end
+    func = function(name, dropdown)
+        local dialog = StaticPopup_Show("PLAYER_REPORT_TYPE_CHEATING", name);
+        if ( dialog ) then
+            dialog.data = dropdown.unit or tonumber(dropdown.lineID);
         end
     end,
     show = function(name, dropdown) return dropdown.lineID end,--and CanComplainChat(dropdown.lineID) end,
@@ -160,7 +125,7 @@ FriendsMenuXP_Buttons["CANCEL"] = {
 
 FriendsMenuXP_Buttons["ADD_FRIEND"] = {
     text = FMXP_BUTTON_ADD_FRIEND,
-    func = function (name) AddFriend(name); end,
+    func = function (name) C_FriendList.AddFriend(name); end,
     show = function(name)
         if(name == UnitName("player")) then return end;
         for i = 1, C_FriendList.GetNumFriends() do
@@ -175,7 +140,7 @@ FriendsMenuXP_Buttons["ADD_FRIEND"] = {
 
 FriendsMenuXP_Buttons["REMOVE_FRIEND"] = {
     text = REMOVE_FRIEND,
-    func = function (name) RemoveFriend(name); end,
+    func = function (name) C_FriendList.RemoveFriend(name); end,
     show = function(name)
         if(name == UnitName("player")) then return end;
         for i = 1, C_FriendList.GetNumFriends() do
@@ -207,11 +172,13 @@ FriendsMenuXP_Buttons["SET_NOTE"] = {
 
 FriendsMenuXP_Buttons["GUILD_LEAVE"] = {
     text = GUILD_LEAVE,
-    func = function (name) StaticPopup_Show("CONFIRM_GUILD_LEAVE", GetGuildInfo("player")); end,
-    show = function(name)
-        if name ~= UnitName("player") or (GuildFrame and not GuildFrame:IsShown()) then return end;
-        return 1;
-    end,
+    -- func = function (name) StaticPopup_Show("CONFIRM_GUILD_LEAVE", GetGuildInfo("player")); end,
+    -- show = function(name)
+    --     if name ~= UnitName("player") or (GuildFrame and not GuildFrame:IsShown()) then return end;
+    --     return 1;
+    -- end,
+    isSecure = 1,
+    attributes = "type:macro;macrotext:/gquit",
 }
 
 FriendsMenuXP_Buttons["GUILD_PROMOTE"] = {
@@ -219,6 +186,14 @@ FriendsMenuXP_Buttons["GUILD_PROMOTE"] = {
     func = function (name) local dialog = StaticPopup_Show("CONFIRM_GUILD_PROMOTE", name); dialog.data = name; end,
     show = function(name)
         if ( not IsGuildLeader() or not UnitIsInMyGuild(name) or name == UnitName("player") or (GuildFrame and not GuildFrame:IsShown()) ) then return end;
+        return 1;
+    end,
+}
+
+FriendsMenuXP_Buttons["REPORT_SUGGESTION"] = {
+    text = REPORT_SUGGESTION,
+    func = function (name) ReportSuggestion(name); end,
+    show = function(name)
         return 1;
     end,
 }
@@ -425,7 +400,7 @@ FriendsMenuXP_ButtonSet["NORMAL"] = {
     "INVITE",
     "TARGET",
     "SET_NOTE",
-    "REPORT_SPAM",
+    "REPORT_SPAMMING",
     "REPORT_BAD_LANGUAGE",
     "IGNORE",
     "CANCEL_IGNORE",
@@ -456,9 +431,9 @@ FriendsMenuXP_ButtonSet["RAID"] = {
     "TRADE",
     "PROMOTE",
     "LOOT_PROMOTE",
-    "SET_FOCUS",
-    "ACHIEVEMENTS",
-    "ARMORY",
+    --"SET_FOCUS",
+    --"ACHIEVEMENTS",
+    --"ARMORY",
     "CANCEL",
 }
 
@@ -468,7 +443,7 @@ FriendsMenuXP_ButtonSet["OFFLINE"] = {
     "CANCEL_IGNORE",
     "ADD_FRIEND",
     "REMOVE_FRIEND",
-    "ARMORY",
+    --"ARMORY",
     "CANCEL",
 }
 
@@ -477,7 +452,7 @@ FriendsMenuXP_ButtonSet["UNITPOPUP"] = {
     "SET_NOTE",
     "ADD_GUILD",
     "GET_NAME",
-    "ARMORY",
+    --"ARMORY",
     "IGNORE",
     "CANCEL_IGNORE",
 }

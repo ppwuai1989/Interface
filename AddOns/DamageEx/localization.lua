@@ -4,6 +4,7 @@ DEX_FontList = {
 	"Fonts\\ARIALN.TTF",
 	"Fonts\\FRIZQT__.ttf",
 	"Fonts\\SKURRI.ttf",
+	"Fonts\\Fight.TTF",
 }
 
 DEX_TXT_CRUSH = "Crush!"
@@ -42,7 +43,7 @@ DEXOptionsFrameCheckButtons = {
 }
 
 DEXOptionsFrameSliders = {
-	["DEX_Font"] = {  title = "Font ", minText="Font1", maxText="Font3", tooltipText = "Reset font"},
+	["DEX_Font"] = {  title = "Font ", minText="Font1", maxText="Font4", tooltipText = "Reset font"},
 	["DEX_FontSize"] = {  title = "Font size ", minText="Small", maxText="Large", tooltipText = "Config font size"},
 	["DEX_OutLine"] = {  title = "Font outline ", minText="None", maxText="Thick", tooltipText = "Config font outline"},
 	["DEX_Speed"] = {  title = "Text floating speed ", minText="Slow", maxText="Fast", tooltipText = "Config text floating speed"},

@@ -37,12 +37,30 @@ local function ItemStackCount(tip, link)
     end
 end
 
+local function ItemPrice(tip, link)
+    local itemSellPrice = select(11, GetItemInfo(link))
+    if (itemSellPrice and itemSellPrice > 0) then
+        local count = 1
+        local mouse = GetMouseFocus()
+        if (mouse) then
+            count = mouse.count or count
+        end
+        tip:AddLine(" ")
+        if (count > 1) then
+            SetTooltipMoney(tip, itemSellPrice, nil, "單價")
+        end
+        itemSellPrice = itemSellPrice * count
+        SetTooltipMoney(tip, itemSellPrice, nil, SELL_PRICE)
+    end
+end
+
 LibEvent:attachTrigger("tooltip:item", function(self, tip, link)
     local quality = select(3, GetItemInfo(link)) or 0
     local r, g, b = GetItemQualityColor(quality)
     ColorBorder(tip, r, g, b)
     ItemStackCount(tip, link)
     ItemIcon(tip, link)
+    -- ItemPrice(tip, link)
 end)
 
 hooksecurefunc("EmbeddedItemTooltip_OnTooltipSetItem", function(self)

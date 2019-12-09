@@ -1,6 +1,6 @@
 --[[
 Name: LibRangeCheck-2.0
-Revision: $Revision: 192 $
+Revision: $Revision: 198 $
 Author(s): mitch0
 Website: http://www.wowace.com/projects/librangecheck-2-0/
 Description: A range checking library based on interact distances and spell ranges
@@ -14,9 +14,9 @@ License: Public Domain
 -- A callback is provided for those interested in checker changes.
 -- @usage
 -- local rc = LibStub("LibRangeCheck-2.0")
---
+-- 
 -- rc.RegisterCallback(self, rc.CHECKERS_CHANGED, function() print("need to refresh my stored checkers") end)
---
+-- 
 -- local minRange, maxRange = rc:GetRange('target')
 -- if not minRange then
 --     print("cannot get range estimate for target")
@@ -25,7 +25,7 @@ License: Public Domain
 -- else
 --     print("target is between " .. minRange .. " and " .. maxRange .. " yards")
 -- end
---
+-- 
 -- local meleeChecker = rc:GetFriendMaxChecker(rc.MeleeRange) -- 5 yds
 -- for i = 1, 4 do
 --     -- TODO: check if unit is valid, etc
@@ -41,12 +41,14 @@ License: Public Domain
 -- @class file
 -- @name LibRangeCheck-2.0
 local MAJOR_VERSION = "LibRangeCheck-2.0"
-local MINOR_VERSION = tonumber(("$Revision: 192 $"):match("%d+")) + 100000
+local MINOR_VERSION = tonumber(("$Revision: 198 $"):match("%d+")) + 100000
 
 local lib, oldminor = LibStub:NewLibrary(MAJOR_VERSION, MINOR_VERSION)
 if not lib then
     return
 end
+
+local IsClassic = (WOW_PROJECT_ID == WOW_PROJECT_CLASSIC)
 
 -- << STATIC CONFIG
 
@@ -78,7 +80,7 @@ local MeleeRange = 5
 
 -- list of friendly spells that have different ranges
 local FriendSpells = {}
--- list of harmful spells that have different ranges
+-- list of harmful spells that have different ranges 
 local HarmSpells = {}
 
 FriendSpells["DEATHKNIGHT"] = {
@@ -135,7 +137,7 @@ HarmSpells["PALADIN"] = {
     20271, -- ["Judgement"], -- 30
     853, -- ["Hammer of Justice"], -- 10
     35395, -- ["Crusader Strike"], -- 5
-}
+} 
 
 FriendSpells["PRIEST"] = {
     527, -- ["Purify"], -- 40
@@ -536,7 +538,7 @@ local function createCheckerList(spellList, itemList, interactList)
             end
         end
     end
-
+    
     if spellList then
         for i = 1, #spellList do
             local sid = spellList[i]
@@ -560,7 +562,7 @@ local function createCheckerList(spellList, itemList, interactList)
             end
         end
     end
-
+    
     if interactList and not next(res) then
         for index, range in pairs(interactList) do
             addChecker(res, range, nil,  checkers_Interact[index], "interact:" .. index)
@@ -696,7 +698,7 @@ lib.failedItemRequests = {}
 local function checker(unit)
 end
 
---@end-do-not-package@
+--@end-do-not-package@ 
 
 --- The callback name that is fired when checkers are changed.
 -- @field
@@ -994,7 +996,7 @@ function lib:processItemRequests(itemRequests)
                     itemRequests[range] = nil
                     break
                 end
-                tremove(items, i)
+                tremove(items, i)   
             elseif not itemRequestTimeoutAt then
                 itemRequestTimeoutAt = GetTime() + ItemRequestTimeout
                 return true
@@ -1149,7 +1151,7 @@ function lib:checkItems(itemList, verbose, color)
             if not name then
                 print(MAJOR_VERSION .. ": |c" .. color .. tostring(item) .. "|r: " .. tostring(range) .. "yd: |cffeda500not in cache|r")
             else
-                local res = IsItemInRange(item, "target")
+                local res = IsItemInRange(item, "target") 
                 if res == nil or verbose then
                     if res == nil then res = "|cffed0000nil|r" end
                     print(MAJOR_VERSION .. ": |c" .. color .. tostring(item) .. ": " .. tostring(name) .. "|r: " .. tostring(range) .. "yd: " .. tostring(res))
@@ -1162,7 +1164,7 @@ end
 function lib:checkSpells(spellList, verbose, color)
     if not spellList then return end
     color = color or 'ffffffff'
-    for i = 1, #spellList do
+    for i = 1, #spellList do 
         local sid = spellList[i]
         local name, _, _, _, minRange, range = GetSpellInfo(sid)
         if (not name) or (name == "") or (not range) then
@@ -1315,9 +1317,9 @@ function lib:speedTest(numIterations)
 end
 
 -- >> DEBUG STUFF
---@end-do-not-package@
+--@end-do-not-package@ 
 
--- << load-time initialization
+-- << load-time initialization 
 
 function lib:activate()
     if not self.frame then
@@ -1325,7 +1327,9 @@ function lib:activate()
         self.frame = frame
         frame:RegisterEvent("LEARNED_SPELL_IN_TAB")
         frame:RegisterEvent("CHARACTER_POINTS_CHANGED")
-        --frame:RegisterEvent("PLAYER_TALENT_UPDATE")
+        if not IsClassic then
+            frame:RegisterEvent("PLAYER_TALENT_UPDATE")
+        end
         frame:RegisterEvent("SPELLS_CHANGED")
         local _, playerClass = UnitClass("player")
         if playerClass == "MAGE" or playerClass == "SHAMAN" then

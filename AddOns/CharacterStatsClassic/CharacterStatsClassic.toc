@@ -1,14 +1,14 @@
 ## Interface: 11302
-## Title: |cff00aeffCharacterStatsClassic|r
-## Title-zhCN: [大脚][集]人物详细属性
-## Title-zhTW: [大腳][集]人物詳細屬性
-## Notes: Advanced Character Stats
 ## Author: Peter Getov
-## Version: 2.4.2
+## Version: 2.6.1
+## Title: |cff00aeffCharacterStatsClassic|r
+## Notes: Advanced Character Stats
+## Title-zhCN: |CFFFF8000辅助|R 详细人物属性
+## Title-zhTW: |CFFFF8000輔助|R 詳細人物屬性
+## X-Repple: 辅助
+## DefaultState:  enabled
 ## SavedVariables: CharacterStatsClassicDB
 ## SavedVariablesPerCharacter: CharacterStatsClassicCharacterDB
-## Dependencies: BigFoot
-## X-Revision: BigFoot
 
 CharacterStatsClassicUI.lua
 CharacterStatsClassicCore.lua

@@ -1,0 +1,9 @@
+## Interface: 11302
+## Title: tullaRange
+## Author: Tuller
+## Notes: Out of range coloring based on RedRange
+## Version: v8.2.1
+## SavedVariables: TULLARANGE_COLORS
+tullaRange.lua
+
+## Q-CAT-Version: 103

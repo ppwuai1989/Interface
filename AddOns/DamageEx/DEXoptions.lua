@@ -6,7 +6,7 @@ local function SetSliderData(key, minValue, maxValue, valueStep)
 	end
 end
 
-SetSliderData("DEX_Font", 1, 3)
+SetSliderData("DEX_Font", 1, 4)
 SetSliderData("DEX_FontSize", 12, 42)
 SetSliderData("DEX_OutLine", 1, 5)
 SetSliderData("DEX_Speed", 30, 300, 5)

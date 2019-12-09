@@ -1,10 +1,8 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
 C:\Projects\WoW\Bin\Interface\FrameXML\UI.xsd">
-
 	<Script file="localization.lua"/>
 	<Script file="localization.cn.lua"/>
 	<Script file="localization.tw.lua"/>
-
 	<Script file="Ex_AutoEquip.lua"/>
 
 	<CheckButton name="ExAE_SetButtonTemplate" virtual="true">
@@ -25,15 +23,15 @@ C:\Projects\WoW\Bin\Interface\FrameXML\UI.xsd">
 		<NormalTexture file="Interface\PetPaperDollFrame\UI-PetHappiness"/>
 	</CheckButton>
 
-	<Frame name="ExAE_Frame" frameStrata="MEDIUM" toplevel="true" parent="UIParent" movable="true" enableMouse="true" clampedToScreen="true">
+	<Frame name="ExAE_Frame" frameStrata="MEDIUM" toplevel="true" parent="UIParent" movable="true" hidden="false" enableMouse="true">
 		<Size>
 			<AbsDimension x="128" y="24"/>
 		</Size>
 
 		<Anchors>
-			<Anchor point="TOPLEFT" relativeTo="PlayerFrame" relativePoint="TOPLEFT">
+			<Anchor point="BOTTOMLEFT" relativeTo="PlayerFrameBackground" relativePoint="TOPLEFT">
 				<Offset>
-					<AbsDimension x="102" y="0"/>
+					<AbsDimension x="-5" y="-2"/>
 				</Offset>
 			</Anchor>
 		</Anchors>
@@ -89,7 +87,7 @@ C:\Projects\WoW\Bin\Interface\FrameXML\UI.xsd">
 				</PushedTexture>
 				<HighlightTexture file="Interface\AddOns\Ex_AutoEquip\Ex_AutoEquipSH" alphaMode="ADD"/>
 			</Button>
-
+			
 			<CheckButton name="$parentSetButton1" inherits="ExAE_SetButtonTemplate" id="1">
 				<Size>
 					<AbsDimension x="19" y="18"/>
@@ -116,7 +114,7 @@ C:\Projects\WoW\Bin\Interface\FrameXML\UI.xsd">
 				<CheckedTexture file="Interface\AddOns\Ex_AutoEquip\Ex_AutoEquipC" alphaMode="ADD"/>
 				<HighlightTexture file="Interface\AddOns\Ex_AutoEquip\Ex_AutoEquipH" alphaMode="ADD"/>
 			</CheckButton>
-
+	
 			<CheckButton name="$parentSetButton2" inherits="ExAE_SetButtonTemplate" id="2">
 				<Size>
 					<AbsDimension x="19" y="18"/>
@@ -143,7 +141,7 @@ C:\Projects\WoW\Bin\Interface\FrameXML\UI.xsd">
 				<HighlightTexture file="Interface\AddOns\Ex_AutoEquip\Ex_AutoEquipH" alphaMode="ADD"/>
 				<CheckedTexture file="Interface\AddOns\Ex_AutoEquip\Ex_AutoEquipC" alphaMode="ADD"/>
 			</CheckButton>
-
+			
 			<CheckButton name="$parentSetButton3" inherits="ExAE_SetButtonTemplate" id="3">
 				<Size>
 					<AbsDimension x="19" y="18"/>
@@ -170,7 +168,7 @@ C:\Projects\WoW\Bin\Interface\FrameXML\UI.xsd">
 				<HighlightTexture file="Interface\AddOns\Ex_AutoEquip\Ex_AutoEquipH" alphaMode="ADD"/>
 				<CheckedTexture file="Interface\AddOns\Ex_AutoEquip\Ex_AutoEquipC" alphaMode="ADD"/>
 			</CheckButton>
-
+			
 			<CheckButton name="$parentSetButton4" inherits="ExAE_SetButtonTemplate" id="4">
 				<Size>
 					<AbsDimension x="19" y="18"/>

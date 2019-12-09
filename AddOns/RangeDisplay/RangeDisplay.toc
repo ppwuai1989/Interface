@@ -1,8 +1,13 @@
 ## Interface: 11302
 ## Title: RangeDisplay
 ## Author: mitch0
-## Version: v4.8.4
+## Version: r392
 ## Notes: Estimated range display. Type /rangedisplay for config
+## Title-zhCN: |CFFFF8000辅助|R 目标距离
+## Notes-zhCN: 监视目标距离|n命令/trange,/trange o|N|CFF0099FF需要基础函数库|R
+## Title-zhTW: |CFFFF8000輔助|R 目標距離
+## Notes-zhTW: 監視目標距離|n命令/trange,/trange o|N|CFF0099FF需要基礎函式庫|R
+## X-Repple: 辅助
 ## LoadManagers: AddonLoader
 ## X-LoadOn-Always: true
 ## SavedVariables: RangeDisplayDB3
@@ -23,6 +28,7 @@ libs\Ace3\AceEvent-3.0\AceEvent-3.0.xml
 libs\Ace3\AceDB-3.0\AceDB-3.0.xml
 libs\Ace3\AceLocale-3.0\AceLocale-3.0.xml
 libs\LibSharedMedia-3.0\lib.xml
+libs\LibDualSpec-1.0\LibDualSpec-1.0.lua
 libs\LibDataBroker-1.1\LibDataBroker-1.1.lua
 #@end-no-lib-strip@
 libs\LibDataBroker-1.1\LibDataBroker-1.1.lua

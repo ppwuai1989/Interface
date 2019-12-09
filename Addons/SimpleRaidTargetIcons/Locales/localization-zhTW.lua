@@ -1,0 +1,118 @@
+local _, srti = ...
+local L = srti.L
+local LOCALE = GetLocale()
+
+if( LOCALE == "zhTW" ) then
+  -- creature types
+  L["Humanoid"] = "人形"
+  L["Giant"] = "巨人"
+  L["Beast"] = "野獸"
+  L["Dragonkin"] = "龍類"
+  L["Demon"] = "惡魔"
+  L["Elemental"] = "元素"
+  L["Undead"] = "亡靈"
+  L["Mechanical"] = "機械"
+  -- CC Immune
+    -- ZG
+  L["Gurubashi Champion"] = "古拉巴什勇士"
+  L["Gurubashi Berserker"] = "古拉巴什狂暴者"
+    -- MC
+  L["Ancient Core Hound"] = "上古熔火惡犬"
+  L["Firelord"] = "火焰之王"
+  L["Flameguard"] = "烈焰守衛"
+  L["Firewalker"] = "火焰行者"
+    -- BWL
+  L["Death Talon Captain"] = "死爪龍人隊長"
+  L["Death Talon Wyrmguard"] = "死爪龍人護衛"
+  L["Death Talon Flamescale"] = "死爪火鱗龍人"
+  L["Death Talon Seether"] = "死爪狂亂者"
+  L["Death Talon Overseer"] = "死爪監工"
+  L["Blackwing Spellbinder"] = "黑翼縛法者"
+  L["Blackwing Technician"] = "黑翼技師"
+  L["Blackwing Warlock"] = "黑翼管理者"
+  -- Kill Targets
+  L["Firewalker"] = "火焰行者"
+  L["Flameguard"] = "烈焰守衛"
+  L["Lava Elemental"] = "熔岩元素"
+  L["Lava Reaver"] = "熔岩掠奪者"
+  L["Gurubashi Berserker"] = "古拉巴什狂暴者"
+  -- Packs
+  L["Slavering Ghoul"] = "被奴役的食屍鬼"
+  L["Firesworn"] = "火誓者"
+  L["Core Hound"] = "熔火惡犬"
+  L["Flamewaker Healer"] = "烈焰行者醫師"
+  L["Flamewaker Elite"] = "烈焰行者精英"
+  L["Buru Egg"] = "布魯的卵" -- needs checking
+  L["Vekniss Warrior"] = "Vekniss Warrior" -- needs translation
+  L["Vekniss Soldier"] = "Vekniss Soldier" -- needs translation
+  -- Options
+  L[" - %0/srti\n no command opens the options menu\n commands to set icon on target"] = " - %0/srti\n 沒有命令打開選項功能表\n 在目標上設置圖示的命令"
+  L["Click above to test settings"] = "點擊上面測試設置"
+  L["Double Click Speed - %s sec"] = "按兩下速度 - %s 秒"
+  L["Double Left Click"] = "按兩下左鍵"
+  L["Enable"] = "啟用"
+  L["Hover Wait Time - %s sec"] = "懸停等待時間 - %s 秒"
+  L["Key Bindings"] = "快速鍵"
+  L["Left Click"] = "左鍵按一下"
+  L["Modifiers"] = "調節器"
+  L["Press |cffffffffEsc|r to cancel"] = "按 |cffffffffEsc|r 退出"
+  L["Quick"] = "快"
+  L["Radial Menu Options"] = "徑向功能表選項"
+  L["Select Icon on Hover"] = "在懸停上選擇圖示"
+  L["Slow"] = "慢"
+  L["SRTI Disabled"] = "SRTI 禁用"
+  L["Test Me"] = "測試"
+  L["|cffff0000%s Function will be Unbound from this Key!"] = "|cffff0000%s 功能將從此鍵中釋放！"
+  L["|cffff0000%s Function will be Unbound!"] = "|cffff0000%s 功能將被釋放!"
+  L["|cffff0000You are about to unbind key from |r%s"] = "|cffff0000你要取消綁定按鍵 |r%s"
+  L["|cffffffffPress a key to bind |r%s"] = "|cffffffff按鍵綁定 |r%s"
+  -- Keybinds
+  L["Show Radial Menu"] = "徑向功能表顯示"
+  L["Mouseover Mark CC"] = "滑鼠懸停標記 職業類型怪物"
+  L["Mouseover Clear Marks"] = "滑鼠懸停退出標記"
+  L["CC TargetBar"] = "職業類型怪物 目標條"
+  L["Yellow Star Icon"] = "黃色星星圖示"
+  L["Orange Circle Icon"] = "橙色圓圈圖示"
+  L["Purple Diamond Icon"] = "紫色鑽石圖示"
+  L["Green Triangle Icon"] = "綠色三角形圖示"
+  L["Silver Moon Icon"] = "銀色月亮圖示"
+  L["Blue Square Icon"] = "藍色方塊圖示"
+  L["Red Cross Icon"] = "紅色十字圖示"
+  L["White Skull Icon"] = "白色骷髏圖示"
+  L["Target Star"] = "目標星星"
+  L["Target Circle"] = "目標圓圈"
+  L["Target Diamond"] = "目標菱形"
+  L["Target Triangle"] = "目標三角"
+  L["Target Moon"] = "目標月亮"
+  L["Target Square"] = "目標方塊"
+  L["Target Cross"] = "目標十字"
+  L["Target Skull"] = "目標骷髏"
+  L["Remove Icon"] = "清除圖示"
+  -- Cursor Companion Text
+  L["%s|cffffffffSkull|r"] = "%s|cffffffff骷髏|r"
+  L["%s|cffFF4500Cross|r"] = "%s|cffFF4500叉叉|r"
+  L["%s|cff00BFFFSquare|r"] = "%s|cff00BFFF方塊|r"
+  L["%s|cffc7c7cfMoon|r"] = "%s|cffc7c7cf月亮|r"
+  L["%s|cff7CFC00Triangle|r"] = "%s|cff7CFC00三角|r"
+  L["%s|cffff00ffDiamond|r"] = "%s|cffff00ff菱形|r"
+  L["%s|cffff8000Circle|r"] = "%s|cffff8000圓圈|r"
+  L["%s|cffffff00Star|r"] = "%s|cffffff00星星|r"
+  -- Icon Names
+  L["remove icon"] = "清除圖示"
+  L["yellow star"] = "黃色星星"
+  L["orange circle"] = "橙色圓圈"
+  L["purple diamond"] = "紫色鑽石"
+  L["green triangle"] = "綠色三角形"
+  L["silver moon"] = "銀色月亮"
+  L["blue square"] = "藍色方塊"
+  L["red cross"] = "紅色十字"
+  L["white skull"] = "白色骷髏"
+  -- Tooltip
+  L["Mark "] = "標記 "
+  L["Target "] = "目標 "
+  L["Click to target %s"] = "點擊目標 %s"
+  L["Group Target Scan"] = "隊伍目標掃描"
+  L["Drag icon over units."] = "在頭像上點擊和拖動."
+  L["Targets %s"] = "目標 %s"
+  return
+end

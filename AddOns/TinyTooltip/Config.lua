@@ -5,7 +5,7 @@ addon.db = {
     version = 2.6,
     general = {
         scale             = 1,                      --縮放
-        mask              = true,                   --頂部遮罩層
+        mask              = false,                  --頂部遮罩層
         bgfile            = "rock",                 --背景
         background        = {0, 0, 0, 0.7},         --背景顔色和透明度
         borderSize        = 1,                      --邊框大小（直角邊框才生效）
@@ -17,11 +17,11 @@ addon.db = {
         statusbarOffsetY  = 0,                      --HP Y偏移 0:自動
         statusbarFontSize = 10,                     --HP文字大小
         statusbarFontFlag = "THINOUTLINE",          --HP文字樣式
-        statusbarText     = false,                  --HP文字
+        statusbarText     = true,                  --HP文字
         statusbarColor    = "auto",                 --HP顔色 default|auto|smooth
         statusbarTexture  = "Interface\\AddOns\\TinyTooltip\\texture\\StatusBar", --HP材質
         anchor            = { position = "cursorRight", hiddenInCombat = false, returnInCombat = true, returnOnUnitFrame = false, cp = "BOTTOM", p = "BOTTOMRIGHT", }, --鼠標位置 default|cursor|static|cursorRight
-        alwaysShowIdInfo  = true,
+        alwaysShowIdInfo  = false,
         skinMoreFrames    = true,
         headerFont        = "default",
         headerFontSize    = "default",
@@ -38,18 +38,18 @@ addon.db = {
             anchor = { position = "inherit", hiddenInCombat = false, returnInCombat = false, returnOnUnitFrame = false, cp = "BOTTOM", p = "BOTTOMRIGHT", },
             showTarget = true,                      --顯示目標
             showTargetBy = true,                    --顯示被關注
-            showModel = true,                       --顯示模型
+            showModel = false,                       --顯示模型
             grayForDead = false,                    --灰色死亡目標
             elements = {
                 raidIcon    = { enable = true, filter = "none" },
                 roleIcon    = { enable = true, filter = "none" },
                 pvpIcon     = { enable = true, filter = "none" },
                 factionIcon = { enable = true, filter = "none" },
-                factionBig  = { enable = true, filter = "none" },
-                classIcon   = { enable = true, filter = "none" },
+                factionBig  = { enable = false, filter = "none" },
+                classIcon   = { enable = false, filter = "none" },
                 title       = { enable = true, color = "ccffff", wildcard = "%s",   filter = "none" },
                 name        = { enable = true, color = "class",  wildcard = "%s",   filter = "none" },
-                realm       = { enable = true, color = "00eeee", wildcard = "%s",   filter = "none" },
+                realm       = { enable = false, color = "00eeee", wildcard = "%s",   filter = "none" },
                 statusAFK   = { enable = true, color = "ffd200", wildcard = "(%s)", filter = "none" },
                 statusDND   = { enable = true, color = "ffd200", wildcard = "(%s)", filter = "none" },
                 statusDC    = { enable = true, color = "999999", wildcard = "(%s)", filter = "none" },

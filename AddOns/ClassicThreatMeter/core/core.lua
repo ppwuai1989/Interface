@@ -1230,3 +1230,11 @@ SLASH_CLASSICTHREATMETER3 = "/classicthreatmeter"
 SlashCmdList["CLASSICTHREATMETER"] = function()
 	LibStub("AceConfigDialog-3.0"):Open("ClassicThreatMeter")
 end
+
+function ClassicThreatMeterVisibility()
+	if CTM.frame:IsShown() then
+		CTM.frame:Hide()
+	else
+		CTM.frame:Show()
+	end
+end
