@@ -1,4 +1,4 @@
-## Interface: 11302
+## Interface: 11303
 ## Version: 1.1.4
 ## Title: ItemTooltipProfessionIcons
 ## Notes: Displays which professions and quests may use the item via the item's tooltip

@@ -63,7 +63,7 @@ local function QA_Notification(msg, ...)
     elseif (string.find(msg, QA_StringFinish)) then
         -- QA_SendChatMessage(QA_MsgProgressText .. format(msg, ...));
         C_Timer.After(1, QA_CheckCompletion);
-    elseif (string.find(msg, QA_StringFailed)) then
+    elseif (string.find(msg, QA_StringFailedText)) then
         -- QA_SendChatMessage(QA_MsgProgressText .. format(msg, ...));
         C_Timer.After(1, QA_CheckCompletion);
     end

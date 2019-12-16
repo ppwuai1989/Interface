@@ -1,8 +1,0 @@
-## Interface: 11302
-## Title: ClassicCy
-## Notes: untitled
-## Author: Y
-## Version: 1.0.0
-
-EndCap.lua
-EorLCombat.lua

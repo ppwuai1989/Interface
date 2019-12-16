@@ -75,14 +75,17 @@ ais.keywordtext:ClearFocus();
 ais.keywordtext:SetScript("OnEnterPressed", function(self)
     savetext(self, "aikeyword");
     ais.keywordtext:SetText(aikeyword);
+    ais.textmiddletext:SetText(aikeyword);
 end)
 ais.keywordtext:SetScript("OnEscapePressed", function(self)
     savetext(self, "aikeyword");
     ais.keywordtext:SetText(aikeyword);
+    ais.textmiddletext:SetText(aikeyword);
 end)
 ais.keywordtext:SetScript("OnEditFocusLost", function(self)
     savetext(self, "aikeyword");
     ais.keywordtext:SetText(aikeyword);
+    ais.textmiddletext:SetText(aikeyword);
 end)
 ais.keywordtext:SetScript("OnShow", function(self)
     self:SetText(aikeyword);

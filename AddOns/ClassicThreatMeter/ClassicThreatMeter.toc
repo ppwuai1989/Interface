@@ -1,4 +1,4 @@
-## Interface: 11302
+## Interface: 11303
 ## Title: ClassicThreatMeter
 ## Notes: Simple threat meter for WoW Classic.
 ## Title-zhCN: |CFF80FF80团队|R 仇恨统计

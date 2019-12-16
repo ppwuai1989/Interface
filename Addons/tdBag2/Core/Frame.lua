@@ -38,30 +38,23 @@ local LibWindow = LibStub('LibWindow-1.1')
 ---@field private OwnerSelector tdBag2OwnerSelector
 ---@field private BagFrame tdBag2BagFrame
 ---@field private SearchBox EditBox
+---@field private TokenFrame tdBag2TokenFrame
 local Frame = ns.Addon:NewClass('UI.Frame', 'Frame.tdBag2FrameTemplate')
-Frame.Index = 0
 
 function Frame:Constructor(_, bagId)
-    self.meta = { --
-        owner = nil,
-        bagId = bagId,
-        bags = ns.GetBags(bagId),
-        frame = self,
-        profile = Addon:GetFrameProfile(bagId),
-        sets = Addon.db.profile,
-    }
+    self.meta = ns.FrameMeta:New(bagId, self)
     self.menuButtons = {}
     self.pluginButtons = {}
+    self.name = 'tdBag2Bag' .. self.meta.bagId
 
-    self.portrait:SetMask([[Textures\MinimapMask]])
     self.portrait:SetTexture(ns.BAG_ICONS[bagId])
 
     ns.UI.TitleFrame:Bind(self.TitleFrame, self.meta)
     ns.UI.OwnerSelector:Bind(self.OwnerSelector, self.meta)
     ns.UI.BagFrame:Bind(self.BagFrame, self.meta)
     ns.UI.SearchBox:Bind(self.SearchBox, self.meta)
-
-    self.MoneyFrame = ns.UI.MoneyFrame:New(self, self.meta)
+    ns.UI.MoneyFrame:Bind(self.MoneyFrame, self.meta)
+    ns.UI.TokenFrame:Bind(self.TokenFrame, self.meta)
 
     self.Container = ns.UI.Container:New(self, self.meta)
     self.Container:SetPoint('TOPLEFT', self.Inset, 'TOPLEFT', 8, -8)
@@ -70,11 +63,8 @@ function Frame:Constructor(_, bagId)
         self:UpdateSize()
     end)
 
-    self:GenerateName()
     self:SetScript('OnShow', self.OnShow)
     self:SetScript('OnHide', self.OnHide)
-
-    LibWindow.RegisterConfig(self, self.meta.profile.window)
 
     self:UpdateManaged()
     self:UpdateSpecial()
@@ -94,17 +84,13 @@ end
 
 Frame.OnSizeChanged = ns.Spawned(UpdateUIPanelPositions)
 
-function Frame:GenerateName()
-    Frame.Index = Frame.Index + 1
-    self.name = 'tdBag2Bag' .. Frame.Index
-end
-
 function Frame:UpdateSize()
     return self:SetSize(self.Container:GetWidth() + 24, self.Container:GetHeight() + 100)
 end
 
 function Frame:UpdatePosition()
     if not self.meta.profile.managed then
+        LibWindow.RegisterConfig(self, self.meta.profile.window)
         LibWindow.RestorePosition(self)
     end
 end
@@ -123,7 +109,7 @@ function Frame:UpdateManaged()
         return
     end
 
-    self.updatingManageed = true
+    self.updatingManaged = true
 
     local shown = self:IsShown()
     if shown then
@@ -141,7 +127,7 @@ function Frame:UpdateManaged()
     end
 
     self:UpdateSpecial()
-    self.updatingManageed = nil
+    self.updatingManaged = nil
 end
 
 function Frame:UpdateSpecial()
@@ -172,11 +158,7 @@ function Frame:Update()
     self:LayoutPluginButtons()
     self:LayoutBagFrame()
     self:LayoutSearchBox()
-    self:LayoutOwnerFrame()
-end
-
-function Frame:LayoutOwnerFrame()
-    self.OwnerSelector:Show()
+    self:LayoutTokenFrame()
 end
 
 function Frame:LayoutPluginButtons()
@@ -207,6 +189,10 @@ end
 
 function Frame:LayoutBagFrame()
     self.BagFrame:SetShown(self.meta.profile.bagFrame)
+end
+
+function Frame:LayoutTokenFrame()
+    self.TokenFrame:SetShown(self.meta.profile.tokenFrame)
 end
 
 function Frame:LayoutSearchBox()
@@ -241,8 +227,4 @@ function Frame:ToggleBagFrame()
     self:ToggleOption('bagFrame')
     self:LayoutBagFrame()
     self:LayoutSearchBox()
-end
-
-function Frame:IsCached()
-    return Cache:GetBagInfo(self.meta.owner, self.meta.bags[1]).cached
 end

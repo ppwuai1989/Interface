@@ -1,54 +1,111 @@
 local L = LibStub("AceLocale-3.0"):NewLocale("PallyPower", "zhTW", false, false)
 if not L then return end 
 L["AURA"] = "光環"
-L["AURA_DESC"] = "已監視的光環"
-L["AURABTN"] = "顯示光環/聖印按鈕"
-L["AURABTN_DESC"] = "顯示或隱藏光環/聖印按鈕"
-L["AURATRACKER"] = "光環監視"
-L["AURATRACKER_DESC"] = "選擇你想監視的光環"
-L["AUTO"] = "自動Buff按鈕"
-L["AUTO_DESC"] = "[|cffffd200啟用|r/|cffffd200禁用|r] 自動Buff按鈕，或 [|cffffd200啟用|r/|cffffd200禁用|r] 等待玩家。"
-L["AUTOASSIGN"] = "自動分配"
-L["AUTOASSIGN_DESC"] = "基於聖騎士和祝福的數量自動釋放所有祝福"
-L["AUTOBTN"] = "啟用自動buff按鈕"
-L["AUTOBTN_DESC"] = "[啟用/禁用] 自動Buff按鈕"
-L["AUTOKEY1"] = "[自動]普通祝福快速鍵"
-L["AUTOKEY1_DESC"] = "普通祝福的快速鍵"
-L["AUTOKEY2"] = "[自動]強效祝福快速鍵"
-L["AUTOKEY2_DESC"] = "強效祝福的快速鍵"
-L["BRPT"] = "祝福報告"
-L["BRPT_DESC"] = "報告所有祝福到團隊或小隊頻道"
-L["BSC"] = "主窗口大小"
-L["BSC_DESC"] = "設置祝福施加視窗的大小"
-L["BUTTONS"] = "按鈕"
-L["BUTTONS_DESC"] = "更改按鈕設置"
-L["CLASSBTN"] = "啟用職業按鈕"
-L["CLASSBTN_DESC"] = "禁用後，也將禁用玩家按鈕，並且您只能使用“自動Buff按鈕”釋放Buff"
-L["CPBTNS"] = "職業和玩家按鈕"
-L["CPBTNS_DESC"] = "[|cffffd200Enable|r/|cffffd200Disable|r] 玩家或職業按鈕"
-L["DISPEDGES"] = "顯示按鈕邊角"
-L["DISPEDGES_DESC"] = "顯示玩家按鈕的邊角"
-L["DRAG"] = "拖拽按鈕"
-L["DRAG_DESC"] = "[|cffffd200啟用|r/|cffffd200禁用|r]拖拽按鈕"
-L["DRAGHANDLE"] = "|cffffffff[左鍵]|r |cffff0000鎖定|r/|cff00ff00解鎖|r PallyPower |cffffffff[按住左鍵]|r 移動 PallyPower |cffffffff[右鍵]|r 打開祝福分配 |cffffffff[Shift-右鍵]|r 打開設置"
-L["DRAGHANDLE_ENABLED"] = "啟用拖拽"
-L["DRAGHANDLE_ENABLED_DESC"] = "[啟用/禁用]拖拽"
-L["FREEASSIGN"] = "自由分配"
-L["FREEASSIGN_DESC"] = "允許其他人更改你釋放的祝福"
-L["Fully Buffed"] = "已完整Buff"
-L["HorLeftDown"] = "水準 左 | 下"
-L["HorLeftUp"] = "水準 左 | 上"
-L["HorRightDown"] = "水準 右 | 下"
-L["HorRightUp"] = "水準 右 | 上"
-L["LAYOUT"] = "Buff按鈕 | 玩家按鈕佈局"
-L["LAYOUT_DESC"] = "自訂佈局"
-L["MAINASSISTANT"] = "自動Buff主助理"
-L["MAINASSISTANT_DESC"] = "啟用後，PallyPower將自動對標記為| cffffd200主助理|r的人物施放更高級的普通祝福。"
-L["MAINASSISTANTGBUFF"] = "覆蓋..."
-L["MAINASSISTANTGBUFF_DESC"] = "選擇希望在主助理上施放的更高級祝福。"
-L["MAINASSISTANTNBUFF"] = "...使用普通祝福..."
-L["MAINASSISTANTNBUFF_DESC"] = "選擇要用來對主助理施放的普通祝福。"
-L["MAINROLES"] = "主坦克/助理人物"
+L["AURA_DESC"] = "已監控的光環"
+L["AURABTN"] = "顯示 光環/祝福 按鈕"
+L["AURABTN_DESC"] = "顯示/隱藏 光環/祝福 按鈕"
+--[[Translation missing --]]
+L["AURATRACKER"] = "Aura Tracker"
+--[[Translation missing --]]
+L["AURATRACKER_DESC"] = "Select the Aura you want to track"
+--[[Translation missing --]]
+L["AUTO"] = "Auto Buff Button"
+--[[Translation missing --]]
+L["AUTO_DESC"] = "[|cffffd200Enable|r/|cffffd200Disable|r] The Auto Buff Button or [|cffffd200Enable|r/|cffffd200Disable|r] Wait for Players."
+--[[Translation missing --]]
+L["AUTOASSIGN"] = "Auto-Assign"
+--[[Translation missing --]]
+L["AUTOASSIGN_DESC"] = [=[Auto-Assign all Blessings 
+based on the number of 
+available Paladins and 
+their available Blessings.]=]
+--[[Translation missing --]]
+L["AUTOBTN"] = "Auto Buff Button"
+--[[Translation missing --]]
+L["AUTOBTN_DESC"] = "[Enable/Disable] The Auto Buff Button"
+--[[Translation missing --]]
+L["AUTOKEY1"] = "Auto Normal Blessing Key"
+--[[Translation missing --]]
+L["AUTOKEY1_DESC"] = "Key Binding for automated buffing of normal blessings."
+--[[Translation missing --]]
+L["AUTOKEY2"] = "Auto Greater Blessing Key"
+--[[Translation missing --]]
+L["AUTOKEY2_DESC"] = "Key Binding for automated buffing of greater blessings."
+--[[Translation missing --]]
+L["BRPT"] = "Blessings Report"
+--[[Translation missing --]]
+L["BRPT_DESC"] = [=[Report all Blessing 
+assignments to the 
+Raid and Party channel.]=]
+L["BSC"] = "Buff 縮放"
+L["BSC_DESC"] = "設置 Buff 條大小"
+--[[Translation missing --]]
+L["BUTTONS"] = "Buttons"
+--[[Translation missing --]]
+L["BUTTONS_DESC"] = "Change the button settings"
+--[[Translation missing --]]
+L["CLASSBTN"] = "Class Buttons"
+--[[Translation missing --]]
+L["CLASSBTN_DESC"] = "If this option is disabled it will also disable the Player Buttons and you will only be able to buff using the Auto Buff button."
+--[[Translation missing --]]
+L["CPBTNS"] = "Class & Player Buttons"
+--[[Translation missing --]]
+L["CPBTNS_DESC"] = "[|cffffd200Enable|r/|cffffd200Disable|r] The Player(s) or Class Buttons."
+L["DISPEDGES"] = "顯示按鈕邊框"
+L["DISPEDGES_DESC"] = "顯示玩家按鈕的邊框"
+--[[Translation missing --]]
+L["DRAG"] = "Drag Handle Button"
+--[[Translation missing --]]
+L["DRAG_DESC"] = "[|cffffd200Enable|r/|cffffd200Disable|r] The Drag Handle Button."
+--[[Translation missing --]]
+L["DRAGHANDLE"] = [=[|cffffffff[Left-Click]|r |cffff0000Lock|r/|cff00ff00Unlock|r PallyPower 
+|cffffffff[Left-Click-Hold]|r Move PallyPower 
+|cffffffff[Right-Click]|r Open Blessing Assignments 
+|cffffffff[Shift-Right-Click]|r Open Options]=]
+--[[Translation missing --]]
+L["DRAGHANDLE_ENABLED"] = "Drag Handle"
+--[[Translation missing --]]
+L["DRAGHANDLE_ENABLED_DESC"] = "[Enable/Disable] The Drag Handle"
+--[[Translation missing --]]
+L["FREEASSIGN"] = "Free assignment"
+--[[Translation missing --]]
+L["FREEASSIGN_DESC"] = [=[Allow others to change your 
+blessings without being Party 
+Leader / Raid Assistant.]=]
+L["Fully Buffed"] = "Buff全滿"
+--[[Translation missing --]]
+L["HorLeftDown"] = "Horizontal Left | Down"
+--[[Translation missing --]]
+L["HorLeftUp"] = "Horizontal Left | Up"
+--[[Translation missing --]]
+L["HorRightDown"] = "Horizontal Right | Down"
+--[[Translation missing --]]
+L["HorRightUp"] = "Horizontal Right | Up"
+--[[Translation missing --]]
+L["LAYOUT"] = "Buff Button | Player Button Layout"
+L["LAYOUT_DESC"] = "自訂螢幕配置"
+--[[Translation missing --]]
+L["MAINASSISTANT"] = "Auto-Buff Main Assistant"
+--[[Translation missing --]]
+L["MAINASSISTANT_DESC"] = "If you enable this option PallyPower will automatically over-write a Greater Blessing with a Normal Blessing on players marked with the |cffffd200Main Assistant|r role in the Blizzard Raid Panel. This is useful to avoid blessing the |cffffd200Main Assistant|r role with a Greater Blessing of Salvation."
+--[[Translation missing --]]
+L["MAINASSISTANTGBUFFDP"] = "Override Druids / Paladins..."
+--[[Translation missing --]]
+L["MAINASSISTANTGBUFFDP_DESC"] = "Select the Greater Blessing assignment you wish to over-write on Main Tank: Druids / Paladins."
+--[[Translation missing --]]
+L["MAINASSISTANTGBUFFW"] = "Override Warriors..."
+--[[Translation missing --]]
+L["MAINASSISTANTGBUFFW_DESC"] = "Select the Greater Blessing assignment you wish to over-write on Main Tank: Warriors."
+--[[Translation missing --]]
+L["MAINASSISTANTNBUFFDP"] = "...with Normal..."
+--[[Translation missing --]]
+L["MAINASSISTANTNBUFFDP_DESC"] = "Select the Normal Blessing you wish to use to over-write the Main Tank: Druids / Paladins."
+--[[Translation missing --]]
+L["MAINASSISTANTNBUFFW"] = "...with Normal..."
+--[[Translation missing --]]
+L["MAINASSISTANTNBUFFW_DESC"] = "Select the Normal Blessing you wish to use to over-write the Main Tank: Warriors."
+--[[Translation missing --]]
+L["MAINROLES"] = "Main Tank / Main Assist Roles"
 --[[Translation missing --]]
 L["MAINROLES_DESC"] = [=[These options can be used to automatically assign alternate Normal Blessings for any Greater Blessing assigned to Warriors, Druids or Paladins |cffff0000only|r. 
 
@@ -56,63 +113,130 @@ Normally the Main Tank and the Main Assist roles have been used to identify Main
 
 By having a separate setting for both roles it will allow Paladin Class Leaders or Raid Leaders to remove, as an example, Greater Blessing of Salvation from Tanking classes or if Druid or Paladin Healers are marked with the Main Assist role they could be setup to get Normal Blessing of Wisdom vs Greater Blessing of Might which would allow assigning Greater Blessing of Might for DPS spec'd Druids and Paladins and Normal Blessing of Wisdom to Healing spec'd Druids and Paladins. 
 
-|cffffff00Note: When there are enough Paladins in a Raid to assign all the Greater Blessings, these settings can be safely ignored. Tanking Classes will have to manually switch off Blessing of Salvation.|r]=]
-L["MAINTANK"] = "自動Buff主坦克"
-L["MAINTANK_DESC"] = "啟用後，PallyPower將自動對標記為主坦克的人物施放最高級的祝福，防止被更高級的祝福覆蓋。"
-L["MAINTANKGBUFF"] = "覆蓋..."
-L["MAINTANKGBUFF_DESC"] = "選擇希望在主坦克上施放的最高級祝福。"
-L["MAINTANKNBUFF"] = "...使用普通祝福..."
-L["MAINTANKNBUFF_DESC"] = "選擇希望對主坦克施放的普通祝福。"
+|cffffff00Note: When there are 5 or more Paladins in a Raid (enough to assign all the Greater Blessings), these settings will automatically be disabled. Tanking Classes will have to manually switch off Blessing of Salvation.|r
+]=]
+--[[Translation missing --]]
+L["MAINTANK"] = "Auto-Buff Main Tank"
+--[[Translation missing --]]
+L["MAINTANK_DESC"] = "If you enable this option PallyPower will automatically over-write a Greater Blessing with a Normal Blessing on players marked with the |cffffd200Main Tank|r role in the Blizzard Raid Panel. This is useful to avoid blessing the |cffffd200Main Tank|r role with a Greater Blessing of Salvation."
+--[[Translation missing --]]
+L["MAINTANKGBUFFDP"] = "Override Druids / Paladins..."
+--[[Translation missing --]]
+L["MAINTANKGBUFFDP_DESC"] = "Select the Greater Blessing assignment you wish to over-write on Main Tank: Druids / Paladins."
+--[[Translation missing --]]
+L["MAINTANKGBUFFW"] = "Override Warriors..."
+--[[Translation missing --]]
+L["MAINTANKGBUFFW_DESC"] = "Select the Greater Blessing assignment you wish to over-write on Main Tank: Warriors."
+--[[Translation missing --]]
+L["MAINTANKNBUFFDP"] = "...with Normal..."
+--[[Translation missing --]]
+L["MAINTANKNBUFFDP_DESC"] = "Select the Normal Blessing you wish to use to over-write the Main Tank: Druids / Paladins."
+--[[Translation missing --]]
+L["MAINTANKNBUFFW"] = "...with Normal..."
+--[[Translation missing --]]
+L["MAINTANKNBUFFW_DESC"] = "Select the Normal Blessing you wish to use to over-write the Main Tank: Warriors."
 L["None"] = "無"
-L["None Buffed"] = "沒有被Buff"
-L["OPTIONS"] = "選項"
-L["OPTIONS_DESC"] = "打開PallyPower選項面板"
-L["Partially Buffed"] = "已部分被Buff"
-L["PLAYERBTNS"] = "啟用玩家按鈕"
-L["PLAYERBTNS_DESC"] = "禁用後，將不再看到顯示單個玩家的彈出按鈕， 並且在戰鬥中將無法釋放祝福。"
-L["PP_CLEAR"] = "清除"
-L["PP_CLEAR_DESC"] = "清除所有為自己分配的祝福任務。"
-L["PP_COLOR"] = "更改Buff按鈕的狀態顏色"
-L["PP_LOOKS"] = "改變PallyPower的樣式"
+L["None Buffed"] = "沒有Buff"
+--[[Translation missing --]]
+L["OPTIONS"] = "Options"
+--[[Translation missing --]]
+L["OPTIONS_DESC"] = [=[Opens the PallyPower 
+addon options panel.]=]
+L["Partially Buffed"] = "部份Buff"
+--[[Translation missing --]]
+L["PLAYERBTNS"] = "Player Buttons"
+--[[Translation missing --]]
+L["PLAYERBTNS_DESC"] = "If this option is disabled then you will no longer see the pop out buttons showing individual players and you will not be able to reapply Normal Blessings while in combat."
+--[[Translation missing --]]
+L["PP_CLEAR"] = "Clear"
+--[[Translation missing --]]
+L["PP_CLEAR_DESC"] = [=[Clears all Blessing 
+assignments for Self, 
+Party, and Raid Paladins.]=]
+--[[Translation missing --]]
+L["PP_COLOR"] = "Change the status colors of the buff buttons"
+--[[Translation missing --]]
+L["PP_LOOKS"] = "Change the way PallyPower looks"
+--[[Translation missing --]]
 L["PP_NAME"] = "PallyPower"
-L["PP_RAS1"] = "-- 騎士祝福分配 ---"
-L["PP_RAS2"] = "--- 結束分配 ---"
-L["PP_REFRESH"] = "刷新"
-L["PP_REFRESH_DESC"] = "刷新所有祝福任務、天賦和標記。"
-L["PP_RESET"] = "重置位置"
-L["PP_SHOW"] = "何時顯示 PallyPower"
-L["RAID"] = "團隊"
-L["RAID_DESC"] = "團隊選項"
-L["RESET"] = "重置"
-L["RESET_DESC"] = "將所有PallyPower視窗的位置重置回螢幕中央"
-L["RESIZEGRIP"] = "按住左鍵調整大小 ，右鍵重置默認大小"
-L["RFM"] = "啟動正義之怒"
-L["RFM_DESC"] = "[啟動/禁用]正義之怒"
+--[[Translation missing --]]
+L["PP_RAS1"] = "--- Paladin assignments ---"
+--[[Translation missing --]]
+L["PP_RAS2"] = "--- End of assignments ---"
+--[[Translation missing --]]
+L["PP_RAS3"] = "WARNING: There are more than 5 Paladins in raid."
+--[[Translation missing --]]
+L["PP_RAS4"] = "Tanks, manually switch off Blessing of Salvation!"
+--[[Translation missing --]]
+L["PP_REFRESH"] = "Refresh"
+--[[Translation missing --]]
+L["PP_REFRESH_DESC"] = [=[Refreshes all Blessing 
+assignments, Talents, and 
+Symbol of Kings among Self, 
+Party, and Raid Paladins.]=]
+L["PP_RESET"] = "重設框架"
+--[[Translation missing --]]
+L["PP_SHOW"] = "When to show PallyPower"
+--[[Translation missing --]]
+L["RAID"] = "Raid"
+--[[Translation missing --]]
+L["RAID_DESC"] = "Raid only options"
+--[[Translation missing --]]
+L["RESET"] = "Reset Frames"
+L["RESET_DESC"] = "重設所有PallyPower的框架至螢幕中央"
+--[[Translation missing --]]
+L["RESIZEGRIP"] = [=[Left-Click-Hold to resize 
+Right-Click resets default size]=]
+L["RFM"] = "正義之怒"
+L["RFM_DESC"] = "監控正義之怒"
 L["SEAL"] = "聖印"
-L["SEAL_DESC"] = "已監視的聖印"
-L["SEALBTN"] = "啟用聖印按鈕"
-L["SEALBTN_DESC"] = "[啟用/禁用] 聖印按鈕"
-L["SEALTRACKER"] = "聖印監視器"
-L["SEALTRACKER_DESC"] = "選擇你想監視的聖印"
-L["SETTINGS"] = "設置"
-L["SETTINGS_DESC"] = "更改全域設置"
-L["SHOWGLOBAL"] = "全域顯示"
-L["SHOWGLOBAL_DESC"] = "[顯示/隱藏] PallyPower"
-L["SHOWPARTY"] = "在小隊時顯示"
-L["SHOWPARTY_DESC"] = "當加入一個小隊後顯示/隱藏祝福施加視窗"
-L["SHOWPETS"] = "顯示寵物"
-L["SHOWPETS_DESC"] = "啟用後，寵物將會出現在對應的職業下面。|cffffff00(提示：由於強效祝福的工作方式和寵物的分類方式，寵物需要單獨Buff。此外，除非關閉相位變換，否則術士小鬼將自動隱藏).|r"
-L["SHOWSOLO"] = "在單獨時顯示"
-L["SHOWSOLO_DESC"] = "當單獨一人顯示/隱藏祝福施加視窗"
-L["SHOWTIPS"] = "顯示滑鼠提示"
-L["SHOWTIPS_DESC"] = "[顯示/隱藏] PallyPower滑鼠提示"
+L["SEAL_DESC"] = "監控聖印"
+--[[Translation missing --]]
+L["SEALBTN"] = "Seal Button"
+--[[Translation missing --]]
+L["SEALBTN_DESC"] = "[Enable/Disable] The Aura Button"
+--[[Translation missing --]]
+L["SEALTRACKER"] = "Seal Tracker"
+--[[Translation missing --]]
+L["SEALTRACKER_DESC"] = "Select the Seal you want to track"
+--[[Translation missing --]]
+L["SETTINGS"] = "Settings"
+--[[Translation missing --]]
+L["SETTINGS_DESC"] = "Change global settings"
+--[[Translation missing --]]
+L["SHOWGLOBAL"] = "Show Globally"
+--[[Translation missing --]]
+L["SHOWGLOBAL_DESC"] = "[Show/Hide] PallyPower"
+L["SHOWPARTY"] = "隊伍時顯示"
+L["SHOWPARTY_DESC"] = "在隊伍中時顯示/隱藏Buff條"
+--[[Translation missing --]]
+L["SHOWPETS"] = "Show Pets"
+--[[Translation missing --]]
+L["SHOWPETS_DESC"] = [=[If you enable this option pets will appear under their own class.
+
+|cffffff00Note: Due to the way Greater Blessings work and the way that pets are classified, Pets will need to be buffed separately. Additionally, Warlock Imps will be hidden automatically unless Phase Shift is off.|r]=]
+L["SHOWSOLO"] = "單人時顯示"
+L["SHOWSOLO_DESC"] = "在單人時顯示/隱藏Buff條"
+--[[Translation missing --]]
+L["SHOWTIPS"] = "Show Tooltips"
+--[[Translation missing --]]
+L["SHOWTIPS_DESC"] = "[Show/Hide] The PallyPower Tooltips"
 L["SKIN"] = "皮膚"
-L["SKIN_DESC"] = "應用自訂到背景到Buff按鈕"
-L["SMARTBUFF"] = "啟用智能Buff"
-L["SMARTBUFF_DESC"] = "啟用後，將不會給戰士或盜賊智慧祝福，不會給法師、術士和獵人力量祝福。"
-L["VerDownLeft"] = "垂直 下 | 左"
-L["VerDownRight"] = "垂直 下 | 右"
-L["VerUpLeft"] = "垂直 上 | 左"
-L["VerUpRight"] = "垂直 上 | 右"
-L["WAIT"] = "啟用等待玩家"
-L["WAIT_DESC"] = "啟用後，如果玩家死亡、離線或者不在施法範圍中，那麼自動Buff按鈕不會自動給對應的職業加強效祝福。"
+L["SKIN_DESC"] = "設定Buff 按鈕的自定義背景 "
+--[[Translation missing --]]
+L["SMARTBUFF"] = "Smart Buffs"
+--[[Translation missing --]]
+L["SMARTBUFF_DESC"] = "If you enable this option you will not be allowed to assign Blessing of Wisdom to Warriors or Rogues and Blessing of Might to Mages, Warlocks and Hunters."
+--[[Translation missing --]]
+L["VerDownLeft"] = "Vertical Down | Left"
+--[[Translation missing --]]
+L["VerDownRight"] = "Vertical Down | Right"
+--[[Translation missing --]]
+L["VerUpLeft"] = "Vertical Up | Left"
+--[[Translation missing --]]
+L["VerUpRight"] = "Vertical Up | Right"
+--[[Translation missing --]]
+L["WAIT"] = "Wait for Players"
+--[[Translation missing --]]
+L["WAIT_DESC"] = "If this option is enabled then the Auto Buff Button will not auto buff a class with a greater blessing or a player with a normal blessing if they are dead, offline or not in range."
+ 

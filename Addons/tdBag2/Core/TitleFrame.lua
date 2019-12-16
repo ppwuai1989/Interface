@@ -5,6 +5,8 @@
 
 local format = string.format
 
+local IsAltKeyDown = IsAltKeyDown
+
 ---@type ns
 local ns = select(2, ...)
 local L = ns.L
@@ -27,15 +29,16 @@ end
 
 function TitleFrame:OnShow()
     self:Update()
-    self:RegisterEvent('FRAME_OWNER_CHANGED', 'Update')
+    self:RegisterFrameEvent('FRAME_OWNER_CHANGED', 'Update')
     self:RegisterEvent('UPDATE_ALL', 'Update')
 
-    if self.meta.bagId == ns.BAG_ID.BANK then
+    if self.meta:IsBank() then
         self:RegisterEvent('BANK_CLOSED', 'Update')
     end
 end
 
 function TitleFrame:OnHide()
+    self:UnregisterAllEvents()
     if self.moving then
         self:OnMouseUp()
     end
@@ -63,7 +66,7 @@ end
 
 function TitleFrame:Update()
     local title = format(self.title, Cache:GetOwnerInfo(self.meta.owner).name)
-    if self.meta.sets.textOffline and self.meta.frame:IsCached() then
+    if self.meta.sets.textOffline and self.meta:IsCached() then
         title = title .. ' ' .. L['|cffff2020(Offline)|r']
     end
     self:SetText(title)

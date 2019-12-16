@@ -24,6 +24,7 @@ L.TOOLTIP_SHOW_BAG_FRAME = '显示背包列表'
 L.TOOLTIP_TOGGLE_BAG = '打开背包'
 L.TOOLTIP_TOGGLE_BANK = '打开银行'
 L.TOOLTIP_PURCHASE_BANK_SLOT = '购买银行空位'
+L.TOOLTIP_WATCHED_TOKENS = '切换展示的代币'
 
 ---- options
 
@@ -32,6 +33,7 @@ L.DESC_FRAMES = '背包偏好设置。'
 L.DESC_COLORS = '颜色偏好设置。'
 L.DESC_DISPLAY = '自动显示和关闭。'
 
+L['Character Specific Settings'] = '角色独立设置'
 L['Frame Settings'] = '背包设置'
 L['Appearance'] = '外观'
 L['Blizzard Panel'] = '标准面板'
@@ -40,8 +42,12 @@ L['Reverse Slot Order'] = '反向物品排列'
 L['Columns'] = '列数'
 L['Item Scale'] = '物品缩放'
 
+L['Features'] = '功能'
+L['Token Frame'] = '代币'
+
 L['Lock Frames'] = '锁定位置'
 L['Show Junk Icon'] = '显示垃圾图标'
+L['Show Character Portrait'] = '显示角色头像'
 L['Show Quest Starter Icon'] = '显示任务给予物图标'
 L['Show Offline Text in Bag\'s Title'] = '在背包标题上显示离线'
 L['Show Item Count in Tooltip'] = '鼠标提示物品统计'

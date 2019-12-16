@@ -1,4 +1,4 @@
-## Interface: 11302
+## Interface: 11303
 ## Title: oRA3
 ## Notes: Raid and Party Assist
 ## Title-zhCN: |CFF80FF80团队|R 团队助手
@@ -7,7 +7,7 @@
 ## Notes-zhTW: 隊伍和團隊助手。
 ## X-Repple: 团队
 ## DefaultState: Disabled
-## Version: v3-classic
+## Version: v4-classic
 ## Author: Funkydude, Nebula
 
 ## X-Credits: Cladhaire, Ammo, Rabbit

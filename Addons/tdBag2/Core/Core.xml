@@ -2,8 +2,13 @@
 ..\FrameXML\UI.xsd">
     <Include file="Template.xml" />
     <Script file="Events.lua" />
+    <Script file="FrameMeta.lua" />
+    <Script file="Counter.lua" />
+    <Script file="MenuButton.lua" />
     <Script file="TitleFrame.lua" />
     <Script file="MoneyFrame.lua" />
+    <Script file="Token.lua" />
+    <Script file="TokenFrame.lua" />
     <Script file="OwnerSelector.lua" />
     <Script file="Item.lua" />
     <Script file="Bag.lua" />

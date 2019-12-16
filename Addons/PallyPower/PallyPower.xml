@@ -113,7 +113,7 @@ C:\Projects\WoW\Bin\Interface\FrameXML\UI.xsd">
 	  </Backdrop>
 	  <Layers>
 		  <Layer level="OVERLAY">
-			  <Texture name="$parentIcon" file="Interface\Icons\Spell_Holy_RighteousFury">
+			  <Texture name="$parentIcon" file="Interface\AddOns\PallyPower\Icons\SummonChampion">
 				  <Size>
 					  <AbsDimension x="26" y="26" /> 
 				  </Size>
@@ -578,12 +578,6 @@ C:\Projects\WoW\Bin\Interface\FrameXML\UI.xsd">
 		  self:RegisterForDrag("LeftButton");
 		  self:EnableMouseWheel(1);
 	  </OnLoad>
-	  <OnDragStart>
-		  PlayerButton_DragStart(self, button)
-	  </OnDragStart>
-	  <OnDragStop>
-		  PlayerButton_DragStop(self, button)
-	  </OnDragStop>
 	  <OnClick>
 		  PallyPowerPlayerButton_OnClick(self, button, down);
 	  </OnClick>

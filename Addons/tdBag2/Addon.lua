@@ -19,6 +19,8 @@ local UIParent = UIParent
 ---@field UI UI
 ---@field Addon Addon
 ---@field Events Events
+---@field FrameMeta tdBag2FrameMeta
+---@field Counter tdBag2Counter
 local ns = select(2, ...)
 local BAG_ID = ns.BAG_ID
 
@@ -28,6 +30,7 @@ local BAG_ID = ns.BAG_ID
 ---@field reverseSlot boolean
 ---@field managed boolean
 ---@field bagFrame boolean
+---@field tokenFrame boolean
 ---@field window table
 
 ---@class tdBag2Profile
@@ -44,14 +47,7 @@ local BAG_ID = ns.BAG_ID
 ---@field colorSlots boolean
 ---@field lockFrame boolean
 ---@field emptyAlpha number
-
----@class tdBag2FrameMeta
----@field bagId number
----@field owner string
----@field bags number[]
----@field profile tdBag2FrameProfile
----@field frame tdBag2Frame
----@field sets tdBag2Profile
+---@field tokens table
 
 ---@class UI
 ---@field Frame tdBag2Frame
@@ -63,6 +59,9 @@ local BAG_ID = ns.BAG_ID
 ---@field TitleFrame tdBag2TitleFrame
 ---@field OwnerSelector tdBag2OwnerSelector
 ---@field SearchBox tdBag2SearchBox
+---@field TokenFrame tdBag2TokenFrame
+---@field Token tdBag2Token
+---@field MenuButton tdBag2MenuButton
 ns.UI = {}
 ns.Cache = LibStub('LibItemCache-2.0')
 ns.Search = LibStub('LibItemSearch-1.2')
@@ -91,6 +90,7 @@ function Addon:OnInitialize()
                     reverseSlot = false,
                     managed = false,
                     bagFrame = false,
+                    tokenFrame = true,
                     scale = 1,
                 },
                 [BAG_ID.BANK] = { --
@@ -101,6 +101,7 @@ function Addon:OnInitialize()
                     reverseSlot = false,
                     managed = true,
                     bagFrame = true,
+                    tokenFrame = true,
                     scale = 1,
                 },
             },
@@ -136,6 +137,8 @@ function Addon:OnInitialize()
             tradeBagOrder = ns.TRADE_BAG_ORDER.NONE,
             tipCount = true,
 
+            tokens = {[20560] = true, [20559] = true, [20558] = true},
+
             colorSlots = true,
             colorNormal = {r = 1, g = 1, b = 1},
             colorQuiver = {r = 1, g = 0.87, b = 0.68},
@@ -145,6 +148,10 @@ function Addon:OnInitialize()
             emptyAlpha = 0.9,
         },
     }, true)
+
+    self.db:RegisterCallback('OnProfileChanged', function()
+        self:OnProfileChanged()
+    end)
 
     self:SetupBankHider()
     self:SetupOptionFrame()
@@ -175,6 +182,13 @@ function Addon:OnClassCreated(class, name)
     else
         ns[name] = class
     end
+end
+
+function Addon:OnProfileChanged()
+    self:UpdateAllFrameMeta()
+    self:UpdateAllManaged()
+    self:UpdateAllPosition()
+    self:UpdateAll()
 end
 
 function Addon:SetupBankHider()
@@ -241,6 +255,8 @@ function Addon:ToggleOwnerFrame(bagId, owner)
     end
 end
 
+---- update
+
 function Addon:UpdateAll()
     ns.Events:Fire('UPDATE_ALL')
 end
@@ -248,6 +264,18 @@ end
 function Addon:UpdateAllManaged()
     for _, frame in pairs(self.frames) do
         frame:UpdateManaged()
+    end
+end
+
+function Addon:UpdateAllFrameMeta()
+    for k, frame in pairs(self.frames) do
+        frame.meta:Update()
+    end
+end
+
+function Addon:UpdateAllPosition()
+    for _, frame in pairs(self.frames) do
+        frame:UpdatePosition()
     end
 end
 
@@ -261,7 +289,7 @@ function Addon:SetOwner(bagId, owner)
         local frame = self:GetFrame(bagId)
         if frame then
             frame.meta.owner = owner
-            ns.Events:Fire('FRAME_OWNER_CHANGED', bagId)
+            ns.Events:FireFrameEvent('FRAME_OWNER_CHANGED', bagId)
         end
     end
 end

@@ -1,4 +1,4 @@
-﻿## Interface: 11302
+﻿## Interface: 11303
 ## Title: <DCT> SpellAlert
 ## Notes: |cffbc8f8fProvide spell alert for DCT.|r
 ## Title-zhCN: |CFFFF8000战斗|R 战斗指示器 法术预警

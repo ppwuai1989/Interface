@@ -1,4 +1,4 @@
-## Interface: 11302
+## Interface: 11303
 ## Title: Isler's WoWUI
 ## Notes: The console of Isler's WoWUI, includes some useful addons.
 ## Title-zhCN: |cff7fff7fIsler's WoWUI|R
@@ -9,8 +9,8 @@
 ## Author: Isler
 ## Version: 1.13.2.1
 ## Website: http://wow.isler.me/
-## SavedVariables: ACP_Data, ErrorMonsterDB, ExtraConfiguration
-## SavedVariablesPerCharacter: MBB_Exclude, MBB_Options, FeatureFrame_CurrentOffset, FeatureFrameMinimapButton_OffsetX, FeatureFrameMinimapButton_OffsetY, cfilter, cfilterall, cfilters, cfilterlist, aienable, aikeyword, aichannel, aitextleft, aitextright
+## SavedVariables: ACP_Data, ErrorMonsterDB, ExtraConfiguration, cfilter, cfilterall, cfilters, cfilterlist
+## SavedVariablesPerCharacter: MBB_Exclude, MBB_Options, FeatureFrame_CurrentOffset, FeatureFrameMinimapButton_OffsetX, FeatureFrameMinimapButton_OffsetY, aienable, aikeyword, aichannel, aitextleft, aitextright
 
 LibStub\LibStub.lua
 LibChatAnims\LibChatAnims.xml

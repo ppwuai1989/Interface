@@ -118,7 +118,11 @@ local clickFrames
 if is_classic then
 	clickFrames = {
 	"WorldFrame",
-	"TargetFrame",}
+	"TargetFrame",
+	"PartyMemberFrame1",
+	"PartyMemberFrame2",
+	"PartyMemberFrame3",
+	"PartyMemberFrame4"}
 else
 	clickFrames = {
 	"WorldFrame",
@@ -570,13 +574,79 @@ end
 local thirdPartyUF
 if is_classic then
 	thirdPartyUF = {
-	["XPerl"] = {"XPerl_Target","XPerl_Focus","XPerl_TargetTarget"},
-	["Perl_Config"] = {"Perl_Target_NameFrame_CastClickOverlay","Perl_Target_StatsFrame_CastClickOverlay","Perl_Focus_NameFrame_CastClickOverlay",
-		"Perl_Focus_StatsFrame_CastClickOverlay","Perl_Target_Target_StatsFrame_CastClickOverlay","Perl_Target_Target_NameFrame_CastClickOverlay"},
-	["PitBull4"] = {"PitBull4_Frames_Target","PitBull4_Frames_Target's target"},
-	["ShadowedUnitFrames"] = {"SUFUnittarget","SUFUnittargettarget","SUFUnitfocus","SUFUnitfocustarget"},
-	["Stuf"] = {"Stuf.units.target","Stuf.units.focus","Stuf.units.targettarget"},
-}
+		["Blizzard_CompactRaidFrames"] = {},
+		["PitBull4"] = {"PitBull4_Frames_Target","PitBull4_Frames_Target's target"}, -- OK
+		["Aptechka"] = {}, -- OK
+		["ElvUI"] = {"ElvUF_Target"}, -- OK
+		["Grid2"] = {}, -- OK, needs testing for non-group layouts
+		["IGAS_UI"] = {"IGAS_UI_PlayerFrame","IGAS_UI_TargetFrame"}, -- OK
+		["KkthnxUI"] = {"oUF_Target"}, -- OK, missing raid
+		["LunaUnitFrames"] = {"LUFUnittarget"}, -- OK
+		["Perl_Config"] = {"Perl_Target_Frame"}, -- OK
+		["Plexus"] = {}, -- OK
+		["RUF"] = {"oUF_RUF_Target"}, -- OK
+		["ShadowedUnitFrames"] = {"SUFUnittarget"}, -- OK
+		["Tukui"] = {"TukuiTargetFrame"}, -- OK
+		["ZPerl"] = {"XPerl_Target"}, -- OK
+	}
+	for i=1,MAX_PARTY_MEMBERS do
+		local uf_pitbull = "PitBull4_Groups_PartyUnitButton"..i
+		local uf_pitbull_target = "PitBull4_Groups_Party TargetsUnitButton"..i
+		table.insert(thirdPartyUF.PitBull4,uf_pitbull)
+		table.insert(thirdPartyUF.PitBull4,uf_pitbull_target)
+		local uf_igasui = "IGAS_UI_PartyMemberFrame"..i
+		table.insert(thirdPartyUF.IGAS_UI,uf_igasui)
+		local uf_kkthx = "oUF_PartyUnitButton"..i
+		table.insert(thirdPartyUF.KkthnxUI,uf_kkthx)
+		local uf_luf = "LUFHeaderpartyUnitButton"..i
+		table.insert(thirdPartyUF.LunaUnitFrames,uf_luf)
+		local uf_perl = "Perl_Party_MemberFrame"..i
+		table.insert(thirdPartyUF.Perl_Config,uf_perl)
+		local uf_ruf = "oUF_RUF_PartyUnitButton"..i
+		table.insert(thirdPartyUF.RUF,uf_ruf)
+		local uf_shadowed = "SUFHeaderpartyUnitButton"..i
+		table.insert(thirdPartyUF.ShadowedUnitFrames,uf_shadowed)
+		local uf_zperl = "XPerl_party"..i
+		table.insert(thirdPartyUF.ZPerl,uf_zperl)
+		local uf_elvui = "ElvUF_PartyGroup1UnitButton"..i
+		table.insert(thirdPartyUF.ElvUI,uf_elvui)
+	end
+	for i=1,MAX_RAID_MEMBERS do
+		local uf_pitbull = "PitBull4_Groups_RaidUnitButton"..i
+		table.insert(thirdPartyUF.PitBull4,uf_pitbull)
+		local uf_igasui = "iRaidUnitFrame"..i
+		table.insert(thirdPartyUF.IGAS_UI,uf_igasui)
+		local uf_blizzard = "CompactRaidFrame"..i
+		table.insert(thirdPartyUF.Blizzard_CompactRaidFrames,uf_blizzard)
+		local uf_tukui = "TukuiRaidUnitButton"..i
+		table.insert(thirdPartyUF.Tukui,uf_tukui)
+	end
+	for i=1,10 do
+		local uf_pitbull = "PitBull4_Groups_TankUnitButton"..i
+		local uf_pitbull_target = "PitBull4_Groups_Tank TargetsUnitButton"..i
+		table.insert(thirdPartyUF.PitBull4,uf_pitbull)
+		table.insert(thirdPartyUF.PitBull4,uf_pitbull_target)
+	end	
+	for i=1,8 do
+		for k=1,5 do
+			local uf_aptechka = "NugRaid"..i.."UnitButton"..k
+			table.insert(thirdPartyUF.Aptechka,uf_aptechka)
+			local uf_blizzard = "CompactRaidGroup"..i.."Member"..k
+			table.insert(thirdPartyUF.Blizzard_CompactRaidFrames,uf_blizzard)
+			local uf_grid2 = "Grid2LayoutHeader"..i.."UnitButton"..k
+			table.insert(thirdPartyUF.Grid2,uf_grid2)
+			local uf_luf = "LUFHeaderraid"..i.."UnitButton"..k
+			table.insert(thirdPartyUF.LunaUnitFrames,uf_luf)
+			local uf_plexus = "PlexusLayoutHeader"..i.."UnitButton"..k
+			table.insert(thirdPartyUF.Plexus,uf_plexus)
+			local uf_zperl = "XPerl_Raid_Grp"..i.."UnitButton"..k
+			table.insert(thirdPartyUF.ZPerl,uf_zperl)
+			local uf_elvui = "ElvUF_RaidGroup"..i.."UnitButton"..k
+			table.insert(thirdPartyUF.ElvUI,uf_elvui)
+			local uf_elvui40 = "ElvUF_Raid40Group"..i.."UnitButton"..k
+			table.insert(thirdPartyUF.ElvUI,uf_elvui40)
+		end
+	end
 else
 	thirdPartyUF = {
 	["XPerl"] = {"XPerl_Target","XPerl_Focus","XPerl_TargetTarget"},
@@ -761,7 +831,12 @@ function srti.AddExternalFrameScripts()
 					if not mouseUp and _G[frameName]:IsObjectType("Button") then
 						_G[frameName]:RegisterForClicks("AnyUp")
 					end
+					local mouseDown = _G[frameName]:GetScript("OnMouseDown")
+					if not mouseDown and _G[frameName]:IsObjectType("Button") then
+						_G[frameName]:RegisterForClicks("AnyDown")
+					end
 					_G[frameName]:SetScript("OnMouseUp", function(self,arg1) srti.OnMouseUp(self,arg1) end)
+					_G[frameName]:SetScript("OnMouseDown", function(self,arg1) srti.OnMouseDown(self,arg1) end)
 					thirdPartyFrameScripts[frameName] = true
 					clickFrameScripts[frameName] = mouseUp
 				end

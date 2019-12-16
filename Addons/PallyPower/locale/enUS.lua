@@ -55,10 +55,14 @@ L["LAYOUT_DESC"] = [=[Vertical [Left/Right]
 Horizontal [Up/Down]]=]
 L["MAINASSISTANT"] = "Auto-Buff Main Assistant"
 L["MAINASSISTANT_DESC"] = "If you enable this option PallyPower will automatically over-write a Greater Blessing with a Normal Blessing on players marked with the |cffffd200Main Assistant|r role in the Blizzard Raid Panel. This is useful to avoid blessing the |cffffd200Main Assistant|r role with a Greater Blessing of Salvation."
-L["MAINASSISTANTGBUFF"] = "  Override..."
-L["MAINASSISTANTGBUFF_DESC"] = "Select the Greater Blessing assignment you wish to over-write on Main Assist."
-L["MAINASSISTANTNBUFF"] = "  ...with Normal..."
-L["MAINASSISTANTNBUFF_DESC"] = "Select the Normal Blessing you wish to use to over-write the Main Assist."
+L["MAINASSISTANTGBUFFDP"] = "Override Druids / Paladins..."
+L["MAINASSISTANTGBUFFDP_DESC"] = "Select the Greater Blessing assignment you wish to over-write on Main Tank: Druids / Paladins."
+L["MAINASSISTANTGBUFFW"] = "Override Warriors..."
+L["MAINASSISTANTGBUFFW_DESC"] = "Select the Greater Blessing assignment you wish to over-write on Main Tank: Warriors."
+L["MAINASSISTANTNBUFFDP"] = "...with Normal..."
+L["MAINASSISTANTNBUFFDP_DESC"] = "Select the Normal Blessing you wish to use to over-write the Main Tank: Druids / Paladins."
+L["MAINASSISTANTNBUFFW"] = "...with Normal..."
+L["MAINASSISTANTNBUFFW_DESC"] = "Select the Normal Blessing you wish to use to over-write the Main Tank: Warriors."
 L["MAINROLES"] = "Main Tank / Main Assist Roles"
 L["MAINROLES_DESC"] = [=[These options can be used to automatically assign alternate Normal Blessings for any Greater Blessing assigned to Warriors, Druids or Paladins |cffff0000only|r. 
 
@@ -66,13 +70,18 @@ Normally the Main Tank and the Main Assist roles have been used to identify Main
 
 By having a separate setting for both roles it will allow Paladin Class Leaders or Raid Leaders to remove, as an example, Greater Blessing of Salvation from Tanking classes or if Druid or Paladin Healers are marked with the Main Assist role they could be setup to get Normal Blessing of Wisdom vs Greater Blessing of Might which would allow assigning Greater Blessing of Might for DPS spec'd Druids and Paladins and Normal Blessing of Wisdom to Healing spec'd Druids and Paladins. 
 
-|cffffff00Note: When there are enough Paladins in a Raid to assign all the Greater Blessings, these settings can be safely ignored. Tanking Classes will have to manually switch off Blessing of Salvation.|r]=]
+|cffffff00Note: When there are 5 or more Paladins in a Raid (enough to assign all the Greater Blessings), these settings will automatically be disabled. Tanking Classes will have to manually switch off Blessing of Salvation.|r
+]=]
 L["MAINTANK"] = "Auto-Buff Main Tank"
 L["MAINTANK_DESC"] = "If you enable this option PallyPower will automatically over-write a Greater Blessing with a Normal Blessing on players marked with the |cffffd200Main Tank|r role in the Blizzard Raid Panel. This is useful to avoid blessing the |cffffd200Main Tank|r role with a Greater Blessing of Salvation."
-L["MAINTANKGBUFF"] = "  Override..."
-L["MAINTANKGBUFF_DESC"] = "Select the Greater Blessing assignment you wish to over-write on Main Tank."
-L["MAINTANKNBUFF"] = "  ...with Normal..."
-L["MAINTANKNBUFF_DESC"] = "Select the Normal Blessing you wish to use to over-write the Main Tank."
+L["MAINTANKGBUFFDP"] = "Override Druids / Paladins..."
+L["MAINTANKGBUFFDP_DESC"] = "Select the Greater Blessing assignment you wish to over-write on Main Tank: Druids / Paladins."
+L["MAINTANKGBUFFW"] = "Override Warriors..."
+L["MAINTANKGBUFFW_DESC"] = "Select the Greater Blessing assignment you wish to over-write on Main Tank: Warriors."
+L["MAINTANKNBUFFDP"] = "...with Normal..."
+L["MAINTANKNBUFFDP_DESC"] = "Select the Normal Blessing you wish to use to over-write the Main Tank: Druids / Paladins."
+L["MAINTANKNBUFFW"] = "...with Normal..."
+L["MAINTANKNBUFFW_DESC"] = "Select the Normal Blessing you wish to use to over-write the Main Tank: Warriors."
 L["None"] = "None"
 L["None Buffed"] = "None Buffed"
 L["OPTIONS"] = "Options"
@@ -90,6 +99,8 @@ L["PP_LOOKS"] = "Change the way PallyPower looks"
 L["PP_NAME"] = "PallyPower"
 L["PP_RAS1"] = "--- Paladin assignments ---"
 L["PP_RAS2"] = "--- End of assignments ---"
+L["PP_RAS3"] = "WARNING: There are more than 5 Paladins in raid."
+L["PP_RAS4"] = "Tanks, manually switch off Blessing of Salvation!"
 L["PP_REFRESH"] = "Refresh"
 L["PP_REFRESH_DESC"] = [=[Refreshes all Blessing 
 assignments, Talents, and 

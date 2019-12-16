@@ -1,4 +1,4 @@
-﻿## Interface: 11302
+﻿## Interface: 11303
 ## Title: ClearFont
 ## Notes: Modify Game Fonts and Size, Color, Shadow Of Them.
 ## Title-zhCN: |CFFFF8000界面|R 游戏字体

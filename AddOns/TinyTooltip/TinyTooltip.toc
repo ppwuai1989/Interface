@@ -1,4 +1,4 @@
-## Interface: 11302
+## Interface: 11303
 ## Title: TinyTooltip
 ## Notes: TinyTooltip
 ## Title-zhCN: |CFFFF8000界面|R 鼠标提示增强

@@ -1059,7 +1059,11 @@ function UnitFramesPlus_OptionsFrame_PartyBuffDisplayUpdate()
                 _G["UFP_PartyMemberFrame"..id.."Buff"..j].Cooldown:SetAlpha(cdalpha);
                 -- _G["UFP_PartyMemberFrame"..id.."Buff"..j].CooldownText:SetTextColor(r, g, b);
                 -- _G["UFP_PartyMemberFrame"..id.."Buff"..j].CooldownText:SetAlpha(textalpha);
-                _G["UFP_PartyMemberFrame"..id.."Buff"..j].CooldownText:SetText(timetext);
+                if (not IsAddOnLoaded("OmniCC")) then
+                    _G["UFP_PartyMemberFrame"..id.."Buff"..j].CooldownText:SetText(timetext);
+                else
+                    _G["UFP_PartyMemberFrame"..id.."Buff"..j].CooldownText:SetText("");
+                end
             end
 
             for j = 1, UFP_MAX_PARTY_DEBUFFS, 1 do
@@ -1114,7 +1118,11 @@ function UnitFramesPlus_OptionsFrame_PartyBuffDisplayUpdate()
                 _G["UFP_PartyMemberFrame"..id.."Debuff"..j].Cooldown:SetAlpha(cdalpha);
                 -- _G["UFP_PartyMemberFrame"..id.."Debuff"..j].CooldownText:SetTextColor(r, g, b);
                 -- _G["UFP_PartyMemberFrame"..id.."Debuff"..j].CooldownText:SetAlpha(textalpha);
-                _G["UFP_PartyMemberFrame"..id.."Debuff"..j].CooldownText:SetText(timetext);
+                if (not IsAddOnLoaded("OmniCC")) then
+                    _G["UFP_PartyMemberFrame"..id.."Debuff"..j].CooldownText:SetText(timetext);
+                else
+                    _G["UFP_PartyMemberFrame"..id.."Debuff"..j].CooldownText:SetText("");
+                end
                 _G["UFP_PartyMemberFrame"..id.."Debuff"..j].CountText:SetText(counttext);
             end
 
@@ -1171,7 +1179,11 @@ function UnitFramesPlus_OptionsFrame_PartyBuffDisplayUpdate()
                 _G["UFP_PartyPetMemberFrame"..id.."Debuff"..j].Cooldown:SetAlpha(cdalpha);
                 -- _G["UFP_PartyPetMemberFrame"..id.."Debuff"..j].CooldownText:SetTextColor(r, g, b);
                 -- _G["UFP_PartyPetMemberFrame"..id.."Debuff"..j].CooldownText:SetAlpha(textalpha);
-                _G["UFP_PartyPetMemberFrame"..id.."Debuff"..j].CooldownText:SetText(timetext);
+                if (not IsAddOnLoaded("OmniCC")) then
+                    _G["UFP_PartyPetMemberFrame"..id.."Debuff"..j].CooldownText:SetText(timetext);
+                else
+                    _G["UFP_PartyPetMemberFrame"..id.."Debuff"..j].CooldownText:SetText("");
+                end
                 _G["UFP_PartyPetMemberFrame"..id.."Debuff"..j].CountText:SetText(counttext);
             end
         end

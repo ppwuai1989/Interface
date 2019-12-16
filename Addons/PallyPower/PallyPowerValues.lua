@@ -46,11 +46,15 @@ PALLYPOWER_DEFAULT_VALUES = {
 		enabled = true,
 		layout = "Layout 2",
 		mainTank = true,
-		mainTankGSpells = 4,
-		mainTankSpells = 5,
+		mainTankGSpellsDP = 4,
+		mainTankSpellsDP = 5,
+		mainTankGSpellsW = 4,
+		mainTankSpellsW = 5,
 		mainAssist = false,
-		mainAssistGSpells = 4,
-		mainAssistSpells = 5,
+		mainAssistGSpellsDP = 4,
+		mainAssistSpellsDP = 5,
+		mainAssistGSpellsW = 4,
+		mainAssistSpellsW = 5,
 		rfbuff = true,
 		seal = 4,
 		ShowInParty = true,
@@ -149,6 +153,8 @@ PALLYPOWER_FREEASSIGN = L["FREEASSIGN"];
 PALLYPOWER_FREEASSIGN_DESC = L["FREEASSIGN_DESC"];
 PALLYPOWER_ASSIGNMENTS1 = L["PP_RAS1"];
 PALLYPOWER_ASSIGNMENTS2 = L["PP_RAS2"];
+PALLYPOWER_ASSIGNMENTS3 = L["PP_RAS3"];
+PALLYPOWER_ASSIGNMENTS4 = L["PP_RAS4"];
 PALLYPOWER_OPTIONS	= L["OPTIONS"];
 PALLYPOWER_OPTIONS_DESC	= L["OPTIONS_DESC"];
 
@@ -213,11 +219,71 @@ PallyPower.Auras = {
 };
 -- Buff templates
 -- Table [1] is for a single Paladin but not all Paladins have Kings and if it's not there it defaults to the next prio so something gets assigned so on and so forth down the list of tables.
+
+-- Paladin Battleground Templates
+PallyPower.BattleGroundTemplates={
+	[1] = {
+		[1]=  {3, 2, 5},
+		[2]=  {2, 3, 5},
+		[3]=  {3, 1, 5},
+		[4]=  {3, 1, 2, 5},
+		[5]=  {3, 1, 2, 5},
+		[6]=  {3, 1, 5},
+		[7]=  {3, 1, 5},
+		[8]=  {3, 1, 5},
+		[9]=  {3, 2, 1, 5},
+	},
+	[2] = {
+		[1]=  {3, 2, 5},
+		[2]=  {3, 2, 5},
+		[3]=  {3, 1, 5},
+		[4]=  {3, 1, 2, 5},
+		[5]=  {3, 1, 2, 5},
+		[6]=  {3, 1, 5},
+		[7]=  {3, 1, 5},
+		[8]=  {3, 1, 5},
+		[9]=  {3, 2, 1, 5},
+	},
+	[3] = {
+		[1]=  {3, 2, 5},
+		[2]=  {3, 2, 5},
+		[3]=  {3, 1, 5},
+		[4]=  {3, 1, 2, 5},
+		[5]=  {3, 1, 2, 5},
+		[6]=  {3, 1, 5},
+		[7]=  {3, 1, 5},
+		[8]=  {3, 1, 5},
+		[9]=  {3, 2, 1, 5},
+	},
+	[4]= {
+		[1]=  {6, 3, 2, 5},
+		[2]=  {6, 3, 2, 5},
+		[3]=  {6, 3, 1, 5},
+		[4]=  {6, 3, 1, 2, 5},
+		[5]=  {6, 3, 1, 2, 5},
+		[6]=  {6, 3, 1, 5},
+		[7]=  {6, 3, 1, 5},
+		[8]=  {6, 3, 1, 5},
+		[9]=  {6, 3, 2, 1, 5},
+	},
+	[5]= {
+		[1]=  {6, 3, 2, 5},
+		[2]=  {6, 3, 2, 5},
+		[3]=  {6, 3, 1, 5},
+		[4]=  {6, 3, 1, 2, 5},
+		[5]=  {6, 3, 1, 2, 5},
+		[6]=  {6, 3, 1, 5},
+		[7]=  {6, 3, 1, 5},
+		[8]=  {6, 3, 1, 5},
+		[9]=  {6, 3, 2, 1, 5},
+	},
+}
+
 -- Paladin Raid Templates
 PallyPower.RaidTemplates={
 	[1] = {
 		[1]=  {4, 3, 2},
-		[2]=  {4, 2, 3},
+		[2]=  {4, 3, 2},
 		[3]=  {4, 3, 1},
 		[4]=  {4, 3, 1, 2},
 		[5]=  {4, 3, 1, 2},
@@ -228,7 +294,7 @@ PallyPower.RaidTemplates={
 	},
 	[2] = {
 		[1]=  {4, 3, 2, 6, 5},
-		[2]=  {4, 2, 3, 6, 5},
+		[2]=  {4, 3, 2, 6, 5},
 		[3]=  {4, 3, 1, 6, 5},
 		[4]=  {4, 3, 1, 2, 6, 5},
 		[5]=  {4, 3, 1, 2, 6, 5},
@@ -239,7 +305,7 @@ PallyPower.RaidTemplates={
 	},
 	[3] = {
 		[1]=  {4, 3, 2, 6, 5},
-		[2]=  {4, 2, 3, 6, 5},
+		[2]=  {4, 3, 2, 6, 5},
 		[3]=  {4, 3, 1, 6, 5},
 		[4]=  {4, 3, 1, 2, 6, 5},
 		[5]=  {4, 3, 1, 2, 6, 5},
@@ -286,7 +352,7 @@ PallyPower.Templates={
 	},
 	[2] = {
 		[1]=  {3, 2, 4, 5},
-		[2]=  {2, 3, 4, 5},
+		[2]=  {3, 2, 4, 5},
 		[3]=  {3, 1, 4, 5},
 		[4]=  {3, 1, 4, 2, 5},
 		[5]=  {3, 1, 4, 2, 5},
@@ -297,7 +363,7 @@ PallyPower.Templates={
 	},
 	[3] = {
 		[1]=  {3, 2, 4, 5},
-		[2]=  {2, 3, 4, 5},
+		[2]=  {3, 2, 4, 5},
 		[3]=  {3, 1, 4, 5},
 		[4]=  {3, 1, 4, 2, 5},
 		[5]=  {3, 1, 4, 2, 5},
@@ -329,6 +395,7 @@ PallyPower.Templates={
 		[9]=  {6, 4, 3, 2, 1, 5},
 	},
 }
+
 -- Layouts
 PallyPower.Layouts = {
 	-- Vertical Down | Right

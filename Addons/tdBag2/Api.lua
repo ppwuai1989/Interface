@@ -13,6 +13,7 @@ local tinsert = table.insert
 local ContainerIDToInventoryID = ContainerIDToInventoryID
 local UnitName = UnitName
 local GetScreenWidth = GetScreenWidth
+local GetScreenHeight = GetScreenHeight
 local C_Timer = C_Timer
 
 ---- UI
@@ -33,6 +34,30 @@ ns.ITEM_SPACING = 2
 
 ns.LEFT_MOUSE_BUTTON = [[|TInterface\TutorialFrame\UI-Tutorial-Frame:12:12:0:0:512:512:10:65:228:283|t]]
 ns.RIGHT_MOUSE_BUTTON = [[|TInterface\TutorialFrame\UI-Tutorial-Frame:12:12:0:0:512:512:10:65:330:385|t]]
+
+ns.RACE_ICON_TCOORDS = {
+    ['HUMAN_MALE'] = {0, 0.25, 0, 0.25},
+    ['DWARF_MALE'] = {0.25, 0.5, 0, 0.25},
+    ['GNOME_MALE'] = {0.5, 0.75, 0, 0.25},
+    ['NIGHTELF_MALE'] = {0.75, 1.0, 0, 0.25},
+
+    ['TAUREN_MALE'] = {0, 0.25, 0.25, 0.5},
+    ['SCOURGE_MALE'] = {0.25, 0.5, 0.25, 0.5},
+    ['TROLL_MALE'] = {0.5, 0.75, 0.25, 0.5},
+    ['ORC_MALE'] = {0.75, 1.0, 0.25, 0.5},
+
+    ['HUMAN_FEMALE'] = {0, 0.25, 0.5, 0.75},
+    ['DWARF_FEMALE'] = {0.25, 0.5, 0.5, 0.75},
+    ['GNOME_FEMALE'] = {0.5, 0.75, 0.5, 0.75},
+    ['NIGHTELF_FEMALE'] = {0.75, 1.0, 0.5, 0.75},
+
+    ['TAUREN_FEMALE'] = {0, 0.25, 0.75, 1.0},
+    ['SCOURGE_FEMALE'] = {0.25, 0.5, 0.75, 1.0},
+    ['TROLL_FEMALE'] = {0.5, 0.75, 0.75, 1.0},
+    ['ORC_FEMALE'] = {0.75, 1.0, 0.75, 1.0},
+}
+
+ns.TOKENS = {20560, 20559, 20558}
 
 --[===[@debug@
 local L = LibStub('AceLocale-3.0'):GetLocale('tdBag2')
@@ -120,10 +145,6 @@ function ns.GetBagId(bag)
     return BAG_SETS[bag]
 end
 
-function ns.GetBag(bag)
-    return BAG_SETS[bag] == BAG_ID.BAG
-end
-
 function ns.IsBag(bag)
     return BAG_SETS[bag] == BAG_ID.BAG
 end
@@ -148,6 +169,15 @@ function ns.AnchorTooltip(frame)
     end
 end
 
+function ns.AnchorTooltip2(frame, anchor, x, y)
+    GameTooltip:SetOwner(frame, 'ANCHOR_NONE')
+    if frame:GetTop() > (GetScreenHeight() / 2) then
+        GameTooltip:SetPoint('TOP' .. anchor, frame, 'BOTTOM' .. anchor, x, y)
+    else
+        GameTooltip:SetPoint('BOTTOM' .. anchor, frame, 'TOP' .. anchor, x, y)
+    end
+end
+
 function ns.GetOwnerColoredName(owner)
     local color = RAID_CLASS_COLORS[owner.class or 'PRIEST']
     return format('|cff%02x%02x%02x%s|r', color.r * 0xFF, color.g * 0xFF, color.b * 0xFF, owner.name)
@@ -166,5 +196,13 @@ function ns.Spawned(method)
         return C_Timer.After(0, function()
             return method(a1, a2, a3, a4, a5, a6, a7, a8, a9)
         end)
+    end
+end
+
+function ns.NameGenerator(name)
+    local index = 0
+    return function()
+        index = index + 1
+        return name .. index
     end
 end

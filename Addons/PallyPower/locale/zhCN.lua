@@ -10,7 +10,7 @@ L["AUTO"] = "自动Buff按钮"
 L["AUTO_DESC"] = "[|cffffd200启用|r/|cffffd200禁用|r] 自动Buff按钮，或 [|cffffd200启用|r/|cffffd200禁用|r] 等待玩家。"
 L["AUTOASSIGN"] = "自动分配"
 L["AUTOASSIGN_DESC"] = "基于圣骑士和祝福的数量自动释放所有祝福"
-L["AUTOBTN"] = "启用自动Buff按钮"
+L["AUTOBTN"] = "启用自动buff按钮"
 L["AUTOBTN_DESC"] = "[启用/禁用] 自动Buff按钮"
 L["AUTOKEY1"] = "[自动]普通祝福快捷键"
 L["AUTOKEY1_DESC"] = "普通祝福的快捷键"
@@ -25,7 +25,7 @@ L["BUTTONS_DESC"] = "更改按钮设置"
 L["CLASSBTN"] = "启用职业按钮"
 L["CLASSBTN_DESC"] = "禁用后，也将禁用玩家按钮，并且您只能使用“自动Buff按钮”释放Buff"
 L["CPBTNS"] = "职业和玩家按钮"
-L["CPBTNS_DESC"] = "[|cffffd200启用|r/|cffffd200禁用|r] 玩家或职业按钮"
+L["CPBTNS_DESC"] = "[|cffffd200Enable|r/|cffffd200Disable|r] 玩家或职业按钮"
 L["DISPEDGES"] = "显示按钮边角"
 L["DISPEDGES_DESC"] = "显示玩家按钮的边角"
 L["DRAG"] = "拖拽按钮"
@@ -44,10 +44,22 @@ L["LAYOUT"] = "Buff按钮 | 玩家按钮布局"
 L["LAYOUT_DESC"] = "自定义布局"
 L["MAINASSISTANT"] = "自动Buff主助理"
 L["MAINASSISTANT_DESC"] = "启用后，PallyPower将自动对标记为| cffffd200主助理|r的人物施放更高级的普通祝福。"
-L["MAINASSISTANTGBUFF"] = "覆盖..."
-L["MAINASSISTANTGBUFF_DESC"] = "选择希望在主助理上施放的更高级祝福。"
-L["MAINASSISTANTNBUFF"] = "...使用普通祝福..."
-L["MAINASSISTANTNBUFF_DESC"] = "选择要用来对主助理施放的普通祝福。"
+--[[Translation missing --]]
+L["MAINASSISTANTGBUFFDP"] = "Override Druids / Paladins..."
+--[[Translation missing --]]
+L["MAINASSISTANTGBUFFDP_DESC"] = "Select the Greater Blessing assignment you wish to over-write on Main Tank: Druids / Paladins."
+--[[Translation missing --]]
+L["MAINASSISTANTGBUFFW"] = "Override Warriors..."
+--[[Translation missing --]]
+L["MAINASSISTANTGBUFFW_DESC"] = "Select the Greater Blessing assignment you wish to over-write on Main Tank: Warriors."
+--[[Translation missing --]]
+L["MAINASSISTANTNBUFFDP"] = "...with Normal..."
+--[[Translation missing --]]
+L["MAINASSISTANTNBUFFDP_DESC"] = "Select the Normal Blessing you wish to use to over-write the Main Tank: Druids / Paladins."
+--[[Translation missing --]]
+L["MAINASSISTANTNBUFFW"] = "...with Normal..."
+--[[Translation missing --]]
+L["MAINASSISTANTNBUFFW_DESC"] = "Select the Normal Blessing you wish to use to over-write the Main Tank: Warriors."
 L["MAINROLES"] = "主坦克/助理人物"
 --[[Translation missing --]]
 L["MAINROLES_DESC"] = [=[These options can be used to automatically assign alternate Normal Blessings for any Greater Blessing assigned to Warriors, Druids or Paladins |cffff0000only|r. 
@@ -56,13 +68,26 @@ Normally the Main Tank and the Main Assist roles have been used to identify Main
 
 By having a separate setting for both roles it will allow Paladin Class Leaders or Raid Leaders to remove, as an example, Greater Blessing of Salvation from Tanking classes or if Druid or Paladin Healers are marked with the Main Assist role they could be setup to get Normal Blessing of Wisdom vs Greater Blessing of Might which would allow assigning Greater Blessing of Might for DPS spec'd Druids and Paladins and Normal Blessing of Wisdom to Healing spec'd Druids and Paladins. 
 
-|cffffff00Note: When there are enough Paladins in a Raid to assign all the Greater Blessings, these settings can be safely ignored. Tanking Classes will have to manually switch off Blessing of Salvation.|r]=]
+|cffffff00Note: When there are 5 or more Paladins in a Raid (enough to assign all the Greater Blessings), these settings will automatically be disabled. Tanking Classes will have to manually switch off Blessing of Salvation.|r
+]=]
 L["MAINTANK"] = "自动Buff主坦克"
 L["MAINTANK_DESC"] = "启用后，PallyPower将自动对标记为主坦克的人物施放最高级的祝福，防止被更高级的祝福覆盖。"
-L["MAINTANKGBUFF"] = "覆盖..."
-L["MAINTANKGBUFF_DESC"] = "选择希望在主坦克上施放的最高级祝福。"
-L["MAINTANKNBUFF"] = "...使用普通祝福..."
-L["MAINTANKNBUFF_DESC"] = "选择希望对主坦克施放的普通祝福。"
+--[[Translation missing --]]
+L["MAINTANKGBUFFDP"] = "Override Druids / Paladins..."
+--[[Translation missing --]]
+L["MAINTANKGBUFFDP_DESC"] = "Select the Greater Blessing assignment you wish to over-write on Main Tank: Druids / Paladins."
+--[[Translation missing --]]
+L["MAINTANKGBUFFW"] = "Override Warriors..."
+--[[Translation missing --]]
+L["MAINTANKGBUFFW_DESC"] = "Select the Greater Blessing assignment you wish to over-write on Main Tank: Warriors."
+--[[Translation missing --]]
+L["MAINTANKNBUFFDP"] = "...with Normal..."
+--[[Translation missing --]]
+L["MAINTANKNBUFFDP_DESC"] = "Select the Normal Blessing you wish to use to over-write the Main Tank: Druids / Paladins."
+--[[Translation missing --]]
+L["MAINTANKNBUFFW"] = "...with Normal..."
+L["MAINTANKNBUFFW_DESC"] = [=[选择您想用来覆盖主坦克的普通祝福：战士。
+]=]
 L["None"] = "无"
 L["None Buffed"] = "没有被Buff"
 L["OPTIONS"] = "选项"
@@ -77,6 +102,8 @@ L["PP_LOOKS"] = "改变PallyPower的样式"
 L["PP_NAME"] = "PallyPower"
 L["PP_RAS1"] = "-- 骑士祝福分配 ---"
 L["PP_RAS2"] = "--- 结束分配 ---"
+L["PP_RAS3"] = "警告：团队中圣骑士超过5个。"
+L["PP_RAS4"] = "坦克，手动关闭拯救祝福！"
 L["PP_REFRESH"] = "刷新"
 L["PP_REFRESH_DESC"] = "刷新所有祝福任务、天赋和标记。"
 L["PP_RESET"] = "重置位置"
@@ -116,3 +143,4 @@ L["VerUpLeft"] = "垂直 上 | 左"
 L["VerUpRight"] = "垂直 上 | 右"
 L["WAIT"] = "启用等待玩家"
 L["WAIT_DESC"] = "启用后，如果玩家死亡、离线或者不在施法范围中，那么自动Buff按钮不会自动给对应的职业加强效祝福。"
+ 

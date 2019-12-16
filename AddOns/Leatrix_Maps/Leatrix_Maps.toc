@@ -1,4 +1,4 @@
-## Interface: 11302
+## Interface: 11303
 
 ## Title: Leatrix Maps
 ## Notes: Enhancements for your maps.
@@ -8,7 +8,7 @@
 ## Notes-zhTW: 簡單實用的地圖模組。
 ## X-Repple: 地图
 
-## Version: 1.13.37
+## Version: 1.13.39
 ## Author: Leatrix
 ## SavedVariables: LeaMapsDB
 

@@ -1,6 +1,6 @@
-## Interface: 11302
+## Interface: 11303
 ## Author: Peter Getov
-## Version: 2.6.1
+## Version: 2.8
 ## Title: |cff00aeffCharacterStatsClassic|r
 ## Notes: Advanced Character Stats
 ## Title-zhCN: |CFFFF8000辅助|R 详细人物属性
@@ -10,11 +10,11 @@
 ## SavedVariables: CharacterStatsClassicDB
 ## SavedVariablesPerCharacter: CharacterStatsClassicCharacterDB
 
+Localization\Localization_en.lua
+Localization\Localization_cn.lua
+Localization\Localization_tw.lua
+
 CharacterStatsClassicUI.lua
 CharacterStatsClassicCore.lua
 CharacterStatsClassicUtils.lua
 ClassUtils.lua
-
-Localization\Localization_en.lua
-Localization\Localization_cn.lua
-Localization\Localization_tw.lua

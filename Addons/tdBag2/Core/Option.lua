@@ -3,6 +3,10 @@
 -- @Link   : https://dengsir.github.io
 -- @Date   : 10/23/2019, 3:14:52 PM
 
+local format = string.format
+local UnitName = UnitName
+local GetRealmName = GetRealmName
+
 ---@type ns
 local ns = select(2, ...)
 local Addon = ns.Addon
@@ -118,10 +122,15 @@ function Addon:SetupOptionFrame()
                     column = range(L['Columns'], 6, 36, 1),
                     scale = range(L['Item Scale'], 0.5, 2),
                 }),
+                features = inline(L['Features'], {
+                    tokenFrame = toggle(L['Token Frame']), --
+                }),
                 buttons = inline(L['Plugin Buttons'], FRAMES[bagId]),
             },
         }
     end
+
+    local charProfileKey = format('%s - %s', UnitName('player'), GetRealmName())
 
     local options = {
         type = 'group',
@@ -133,6 +142,18 @@ function Addon:SetupOptionFrame()
             self:UpdateAll()
         end,
         args = {
+            profile = {
+                type = 'toggle',
+                name = L['Character Specific Settings'],
+                width = 'double',
+                order = orderGen(),
+                set = function(_, checked)
+                    self.db:SetProfile(checked and charProfileKey or 'Default')
+                end,
+                get = function()
+                    return self.db:GetCurrentProfile() == charProfileKey
+                end,
+            },
             general = group(GENERAL, {
                 desc = desc(L.DESC_GENERAL),
                 generalHeader = header(GENERAL),
@@ -153,6 +174,7 @@ function Addon:SetupOptionFrame()
                 appearanceHeader = header(L['Appearance']),
                 iconJunk = toggle(L['Show Junk Icon']),
                 iconQuestStarter = toggle(L['Show Quest Starter Icon']),
+                iconChar = toggle(L['Show Character Portrait']),
                 textOffline = toggle(L['Show Offline Text in Bag\'s Title']),
                 tradeBagOrder = drop{
                     name = L['Trade Containers Location'],

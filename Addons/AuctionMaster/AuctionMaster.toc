@@ -1,4 +1,4 @@
-## Interface: 11302
+## Interface: 11303
 ## Title: AuctionMaster
 ## Notes: Auction house selling and statistic tool.
 ## Title-zhCN: |CFFFF8000辅助|R 拍卖行大师

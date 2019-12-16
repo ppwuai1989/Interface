@@ -2,6 +2,7 @@
 if not cfilterall then cfilterall = false end
 if not cfilters then
     cfilters = {
+        white = true,
         black = true,
         trade = true,
         d10 = false,
@@ -54,7 +55,7 @@ function ChannelFilters(self, event, msg, playername, _, channel, _, flag, zonec
             local truename = strsplit("-", playername);
             if truename == UnitName("player") then return false end
             local find = false;
-            if next(cfilterlist["white"]) ~= nil then
+            if cfilters["white"] == true and next(cfilterlist["white"]) ~= nil then
                 for _, word in ipairs(cfilterlist["white"]) do
                     local _, result= gsub(string.upper(msg), word, "");
                     if (result > 0) then
@@ -69,7 +70,7 @@ function ChannelFilters(self, event, msg, playername, _, channel, _, flag, zonec
             if find then
                 local k, v;
                 for k, v in pairs(cfilters) do
-                    if v == true then
+                    if k ~= "white" and v == true then
                         if next(cfilterlist[k]) ~= nil then
                             for _, word in ipairs(cfilterlist[k]) do
                                 local _, result= gsub(string.upper(msg), word, "");
@@ -126,6 +127,7 @@ cf.close:SetPoint("TOPRIGHT", cf, "TOPRIGHT", -5, -5);
 
 --enable
 cf.enable = CreateFrame("CheckButton", nil, cf, "InterfaceOptionsCheckButtonTemplate");
+cf.enable:ClearAllPoints();
 cf.enable:SetPoint("TOPLEFT", 16, -16);
 cf.enable:SetHitRectInsets(0, -60, 0, 0);
 cf.enable.Text:SetText("开启世界频道过滤");
@@ -140,6 +142,7 @@ end)
 
 --enable
 cf.enableall = CreateFrame("CheckButton", nil, cf, "InterfaceOptionsCheckButtonTemplate");
+cf.enableall:ClearAllPoints();
 cf.enableall:SetPoint("TOPLEFT", cf.enable, "TOPLEFT", 160, 0);
 cf.enableall:SetHitRectInsets(0, -60, 0, 0);
 cf.enableall.Text:SetText("应用到公共频道");
@@ -159,15 +162,29 @@ cf.description:SetText("使用空格分隔关键词");
 cf.description:SetTextColor(1, 1, 1);
 
 --whitelist
-cf.whitelist = cf:CreateFontString(nil, nil, "GameFontNormalLarge");
+-- cf.whitelist = cf:CreateFontString(nil, nil, "GameFontNormalLarge");
+-- cf.whitelist:ClearAllPoints();
+-- cf.whitelist:SetPoint("TOPLEFT", cf.description, "TOPLEFT", 0, -30);
+-- cf.whitelist:SetText("白名单：");
+cf.whitelist = CreateFrame("CheckButton", nil, cf, "InterfaceOptionsCheckButtonTemplate");
 cf.whitelist:ClearAllPoints();
-cf.whitelist:SetPoint("TOPLEFT", cf.description, "TOPLEFT", 0, -30);
-cf.whitelist:SetText("白名单：");
+cf.whitelist:SetPoint("TOPLEFT", cf.description, "TOPLEFT", -3, -20);
+cf.whitelist:SetHitRectInsets(0, -60, 0, 0);
+cf.whitelist.Text:SetText("白名单");
+cf.whitelist.Text:SetTextColor(1, 0.82, 0);
+cf.whitelist:SetScript("OnShow", function(self)
+    self:SetChecked(cfilters["white"]);
+end)
+cf.whitelist:SetScript("OnClick", function(self)
+    cfilters["white"] = not cfilters["white"];
+    self:SetChecked(cfilters["white"]);
+end)
+
 --whitelist editbox
 cf.whitelisteditbox = CreateFrame("EditBox", nil, cf, "InputBoxTemplate");
 cf.whitelisteditbox:ClearAllPoints();
-cf.whitelisteditbox:SetPoint("TOPLEFT", cf.whitelist, "TOPLEFT", 3, -16);
-cf.whitelisteditbox:SetWidth(350);
+cf.whitelisteditbox:SetPoint("TOPLEFT", cf.whitelist, "TOPLEFT", 9, -26);
+cf.whitelisteditbox:SetWidth(346);
 cf.whitelisteditbox:SetHeight(25);
 cf.whitelisteditbox:SetAutoFocus(false);
 cf.whitelisteditbox:ClearFocus();
@@ -194,15 +211,28 @@ cf.whitelisteditbox:SetScript("OnLeave", function()
 end)
 
 --blacklist
-cf.blacklist = cf:CreateFontString(nil, nil, "GameFontNormalLarge");
+-- cf.blacklist = cf:CreateFontString(nil, nil, "GameFontNormalLarge");
+-- cf.blacklist:ClearAllPoints();
+-- cf.blacklist:SetPoint("TOPLEFT", cf.whitelisteditbox, "TOPLEFT", -3, -38);
+-- cf.blacklist:SetText("黑名单：");
+cf.blacklist = CreateFrame("CheckButton", nil, cf, "InterfaceOptionsCheckButtonTemplate");
 cf.blacklist:ClearAllPoints();
-cf.blacklist:SetPoint("TOPLEFT", cf.whitelisteditbox, "TOPLEFT", -3, -38);
-cf.blacklist:SetText("黑名单：");
+cf.blacklist:SetPoint("TOPLEFT", cf.whitelisteditbox, "TOPLEFT", -9, -28);
+cf.blacklist:SetHitRectInsets(0, -60, 0, 0);
+cf.blacklist.Text:SetText("黑名单");
+cf.blacklist.Text:SetTextColor(1, 0.82, 0);
+cf.blacklist:SetScript("OnShow", function(self)
+    self:SetChecked(cfilters["black"]);
+end)
+cf.blacklist:SetScript("OnClick", function(self)
+    cfilters["black"] = not cfilters["black"];
+    self:SetChecked(cfilters["black"]);
+end)
 --blacklist editbox
 cf.blacklisteditbox = CreateFrame("EditBox", nil, cf, "InputBoxTemplate");
 cf.blacklisteditbox:ClearAllPoints();
-cf.blacklisteditbox:SetPoint("TOPLEFT", cf.blacklist, "TOPLEFT", 3, -16);
-cf.blacklisteditbox:SetWidth(350);
+cf.blacklisteditbox:SetPoint("TOPLEFT", cf.blacklist, "TOPLEFT", 9, -26);
+cf.blacklisteditbox:SetWidth(346);
 cf.blacklisteditbox:SetHeight(25);
 cf.blacklisteditbox:SetAutoFocus(false);
 cf.blacklisteditbox:ClearFocus();
@@ -230,7 +260,8 @@ end)
 
 --blacklist trade
 cf.blacklisttrade = CreateFrame("CheckButton", nil, cf, "InterfaceOptionsCheckButtonTemplate");
-cf.blacklisttrade:SetPoint("TOPLEFT", cf.blacklisteditbox, "TOPLEFT", -6, -30);
+cf.blacklisttrade:ClearAllPoints();
+cf.blacklisttrade:SetPoint("TOPLEFT", cf.blacklisteditbox, "TOPLEFT", -9, -30);
 cf.blacklisttrade:SetHitRectInsets(0, -40, 0, 0);
 cf.blacklisttrade.Text:SetText("交易");
 cf.blacklisttrade.Text:SetTextColor(1, 0.82, 0);
@@ -245,7 +276,7 @@ end)
 cf.blacklisttradeeditbox = CreateFrame("EditBox", nil, cf, "InputBoxTemplate");
 cf.blacklisttradeeditbox:ClearAllPoints();
 cf.blacklisttradeeditbox:SetPoint("LEFT", cf.blacklisttrade, "RIGHT", 44, 1);
-cf.blacklisttradeeditbox:SetWidth(286);
+cf.blacklisttradeeditbox:SetWidth(285);
 cf.blacklisttradeeditbox:SetHeight(25);
 cf.blacklisttradeeditbox:SetAutoFocus(false);
 cf.blacklisttradeeditbox:ClearFocus();
@@ -273,6 +304,7 @@ end)
 
 --blacklist 10
 cf.blacklist10 = CreateFrame("CheckButton", nil, cf, "InterfaceOptionsCheckButtonTemplate");
+cf.blacklist10:ClearAllPoints();
 cf.blacklist10:SetPoint("TOPLEFT", cf.blacklisttrade, "TOPLEFT", 0, -30);
 cf.blacklist10:SetHitRectInsets(0, -40, 0, 0);
 cf.blacklist10.Text:SetText("10+");
@@ -288,7 +320,7 @@ end)
 cf.blacklist10editbox = CreateFrame("EditBox", nil, cf, "InputBoxTemplate");
 cf.blacklist10editbox:ClearAllPoints();
 cf.blacklist10editbox:SetPoint("LEFT", cf.blacklist10, "RIGHT", 44, 1);
-cf.blacklist10editbox:SetWidth(286);
+cf.blacklist10editbox:SetWidth(285);
 cf.blacklist10editbox:SetHeight(25);
 cf.blacklist10editbox:SetAutoFocus(false);
 cf.blacklist10editbox:ClearFocus();
@@ -316,6 +348,7 @@ end)
 
 --blacklist 20
 cf.blacklist20 = CreateFrame("CheckButton", nil, cf, "InterfaceOptionsCheckButtonTemplate");
+cf.blacklist20:ClearAllPoints();
 cf.blacklist20:SetPoint("TOPLEFT", cf.blacklist10, "TOPLEFT", 0, -30);
 cf.blacklist20:SetHitRectInsets(0, -40, 0, 0);
 cf.blacklist20.Text:SetText("20+");
@@ -331,7 +364,7 @@ end)
 cf.blacklist20editbox = CreateFrame("EditBox", nil, cf, "InputBoxTemplate");
 cf.blacklist20editbox:ClearAllPoints();
 cf.blacklist20editbox:SetPoint("LEFT", cf.blacklist20, "RIGHT", 44, 1);
-cf.blacklist20editbox:SetWidth(286);
+cf.blacklist20editbox:SetWidth(285);
 cf.blacklist20editbox:SetHeight(25);
 cf.blacklist20editbox:SetAutoFocus(false);
 cf.blacklist20editbox:ClearFocus();
@@ -359,6 +392,7 @@ end)
 
 --blacklist 30
 cf.blacklist30 = CreateFrame("CheckButton", nil, cf, "InterfaceOptionsCheckButtonTemplate");
+cf.blacklist30:ClearAllPoints();
 cf.blacklist30:SetPoint("TOPLEFT", cf.blacklist20, "TOPLEFT", 0, -30);
 cf.blacklist30:SetHitRectInsets(0, -40, 0, 0);
 cf.blacklist30.Text:SetText("30+");
@@ -374,7 +408,7 @@ end)
 cf.blacklist30editbox = CreateFrame("EditBox", nil, cf, "InputBoxTemplate");
 cf.blacklist30editbox:ClearAllPoints();
 cf.blacklist30editbox:SetPoint("LEFT", cf.blacklist30, "RIGHT", 44, 1);
-cf.blacklist30editbox:SetWidth(286);
+cf.blacklist30editbox:SetWidth(285);
 cf.blacklist30editbox:SetHeight(25);
 cf.blacklist30editbox:SetAutoFocus(false);
 cf.blacklist30editbox:ClearFocus();
@@ -402,6 +436,7 @@ end)
 
 --blacklist 40
 cf.blacklist40 = CreateFrame("CheckButton", nil, cf, "InterfaceOptionsCheckButtonTemplate");
+cf.blacklist40:ClearAllPoints();
 cf.blacklist40:SetPoint("TOPLEFT", cf.blacklist30, "TOPLEFT", 0, -30);
 cf.blacklist40:SetHitRectInsets(0, -40, 0, 0);
 cf.blacklist40.Text:SetText("40+");
@@ -417,7 +452,7 @@ end)
 cf.blacklist40editbox = CreateFrame("EditBox", nil, cf, "InputBoxTemplate");
 cf.blacklist40editbox:ClearAllPoints();
 cf.blacklist40editbox:SetPoint("LEFT", cf.blacklist40, "RIGHT", 44, 1);
-cf.blacklist40editbox:SetWidth(286);
+cf.blacklist40editbox:SetWidth(285);
 cf.blacklist40editbox:SetHeight(25);
 cf.blacklist40editbox:SetAutoFocus(false);
 cf.blacklist40editbox:ClearFocus();
@@ -445,6 +480,7 @@ end)
 
 --blacklist 50
 cf.blacklist50 = CreateFrame("CheckButton", nil, cf, "InterfaceOptionsCheckButtonTemplate");
+cf.blacklist50:ClearAllPoints();
 cf.blacklist50:SetPoint("TOPLEFT", cf.blacklist40, "TOPLEFT", 0, -30);
 cf.blacklist50:SetHitRectInsets(0, -40, 0, 0);
 cf.blacklist50.Text:SetText("50+");
@@ -460,7 +496,7 @@ end)
 cf.blacklist50editbox = CreateFrame("EditBox", nil, cf, "InputBoxTemplate");
 cf.blacklist50editbox:ClearAllPoints();
 cf.blacklist50editbox:SetPoint("LEFT", cf.blacklist50, "RIGHT", 44, 1);
-cf.blacklist50editbox:SetWidth(286);
+cf.blacklist50editbox:SetWidth(285);
 cf.blacklist50editbox:SetHeight(25);
 cf.blacklist50editbox:SetAutoFocus(false);
 cf.blacklist50editbox:ClearFocus();
@@ -488,6 +524,7 @@ end)
 
 --blacklist 60
 cf.blacklist60 = CreateFrame("CheckButton", nil, cf, "InterfaceOptionsCheckButtonTemplate");
+cf.blacklist60:ClearAllPoints();
 cf.blacklist60:SetPoint("TOPLEFT", cf.blacklist50, "TOPLEFT", 0, -30);
 cf.blacklist60:SetHitRectInsets(0, -40, 0, 0);
 cf.blacklist60.Text:SetText("60+");
@@ -503,7 +540,7 @@ end)
 cf.blacklist60editbox = CreateFrame("EditBox", nil, cf, "InputBoxTemplate");
 cf.blacklist60editbox:ClearAllPoints();
 cf.blacklist60editbox:SetPoint("LEFT", cf.blacklist60, "RIGHT", 44, 1);
-cf.blacklist60editbox:SetWidth(286);
+cf.blacklist60editbox:SetWidth(285);
 cf.blacklist60editbox:SetHeight(25);
 cf.blacklist60editbox:SetAutoFocus(false);
 cf.blacklist60editbox:ClearFocus();
@@ -531,6 +568,7 @@ end)
 
 --blacklist diy
 cf.blacklistdiy = CreateFrame("CheckButton", nil, cf, "InterfaceOptionsCheckButtonTemplate");
+cf.blacklistdiy:ClearAllPoints();
 cf.blacklistdiy:SetPoint("TOPLEFT", cf.blacklist60, "TOPLEFT", 0, -30);
 cf.blacklistdiy:SetHitRectInsets(0, -40, 0, 0);
 cf.blacklistdiy.Text:SetText("额外");
@@ -546,7 +584,7 @@ end)
 cf.blacklistdiyeditbox = CreateFrame("EditBox", nil, cf, "InputBoxTemplate");
 cf.blacklistdiyeditbox:ClearAllPoints();
 cf.blacklistdiyeditbox:SetPoint("LEFT", cf.blacklistdiy, "RIGHT", 44, 1);
-cf.blacklistdiyeditbox:SetWidth(286);
+cf.blacklistdiyeditbox:SetWidth(285);
 cf.blacklistdiyeditbox:SetHeight(25);
 cf.blacklistdiyeditbox:SetAutoFocus(false);
 cf.blacklistdiyeditbox:ClearFocus();

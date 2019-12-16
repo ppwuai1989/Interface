@@ -44,7 +44,7 @@ function Container:Constructor(_, meta)
 end
 
 function Container:OnShow()
-    if not self.meta.frame:IsCached() then
+    if not self.meta:IsCached() then
         self:RegisterEvent('BAG_SIZE_CHANGED')
         self:RegisterEvent('BAG_UPDATE')
         self:RegisterEvent('BAG_CLOSED')
@@ -55,11 +55,11 @@ function Container:OnShow()
     else
         self:UnregisterAllEvents()
     end
-    self:RegisterEvent('FRAME_OWNER_CHANGED')
     self:RegisterEvent('BAG_FOCUS_UPDATED')
     self:RegisterEvent('SEARCH_CHANGED')
     self:RegisterEvent('GET_ITEM_INFO_RECEIVED')
     self:RegisterEvent('UPDATE_ALL')
+    self:RegisterFrameEvent('FRAME_OWNER_CHANGED')
     self:RequestLayout()
 end
 
@@ -100,11 +100,9 @@ function Container:BAG_FOCUS_UPDATED(_, bag)
     self.lastFocusBag = bag
 end
 
-function Container:FRAME_OWNER_CHANGED(_, bagId)
-    if self.meta.bagId == bagId then
-        self.bagOrdered = nil
-        self:Update()
-    end
+function Container:FRAME_OWNER_CHANGED()
+    self.bagOrdered = nil
+    self:Update()
 end
 
 function Container:BAG_UPDATE(_, bag)
@@ -193,7 +191,7 @@ function Container:ForItem(itemId, method)
 end
 
 function Container:HasBag(bag)
-    return bag and self.meta.bagId == ns.GetBagId(bag)
+    return bag and self.meta:HasBag(bag)
 end
 
 function Container:GetBagFrame(bag)

@@ -1,4 +1,4 @@
-﻿## Interface: 11302
+﻿## Interface: 11303
 ## Title: ChatPlus
 ## Notes: ChatPlus
 ## Title-zhCN: |CFFFF8000辅助|R 聊天增强

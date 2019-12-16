@@ -8,9 +8,7 @@ local _G = _G
 local select = select
 
 ---- WOW
-local GetScreenHeight = GetScreenHeight
 local GetMoneyString = GetMoneyString
-local MagicButton_OnLoad = MagicButton_OnLoad
 local MoneyFrame_Update = MoneyFrame_Update
 local MoneyInputFrame_OpenPopup = MoneyInputFrame_OpenPopup
 local MoneyFrame_UpdateTrialErrorButton = MoneyFrame_UpdateTrialErrorButton
@@ -25,24 +23,19 @@ local Cache = ns.Cache
 
 ---@class tdBag2MoneyFrame: Button
 ---@field private meta tdBag2FrameMeta
-local MoneyFrame = ns.Addon:NewClass('UI.MoneyFrame', 'Button.tdBag2MoneyTemplate')
-MoneyFrame._Meta.__uiname = 'tdBag2MoneyFrame'
+local MoneyFrame = ns.Addon:NewClass('UI.MoneyFrame', 'Button')
 
-local MONEY_INFO = { --
-    collapse = 1,
-    canPickup = 1,
-    showSmallerCoins = 'Backpack',
-    UpdateFunc = MoneyFrame_UpdateTrialErrorButton,
-}
+MoneyFrame.GenerateName = ns.NameGenerator('tdBag2MoneyFrame')
 
 function MoneyFrame:Constructor(_, meta)
     self.meta = meta
 
-    self:SetPoint('BOTTOMRIGHT', -5, 2)
-    MagicButton_OnLoad(self)
-
-    self.Money.trialErrorButton:SetPoint('LEFT', -14, 0)
-    self.Money.info = MONEY_INFO
+    self.Money = CreateFrame('Frame', self:GenerateName(), self, 'SmallMoneyFrameTemplate')
+    self.Money.trialErrorButton:SetPoint('LEFT', 8, 1)
+    self.Money:SetScript('OnEvent', nil)
+    self.Money:SetScript('OnShow', nil)
+    self.Money:UnregisterAllEvents()
+    self.Money:SetAllPoints(self)
 
     local name = self.Money:GetName()
     _G[name .. 'GoldButton']:EnableMouse(false)
@@ -54,23 +47,28 @@ function MoneyFrame:Constructor(_, meta)
     self:SetScript('OnEnter', self.OnEnter)
     self:SetScript('OnLeave', self.OnLeave)
     self:SetScript('OnClick', self.OnClick)
-    self:SetScript('OnEvent', nil)
 end
 
 function MoneyFrame:OnShow()
-    self:RegisterEvent('FRAME_OWNER_CHANGED')
+    if not self.meta:IsCached() then
+        self:RegisterEvent('PLAYER_MONEY', 'Update')
+        self:RegisterEvent('PLAYER_TRADE_MONEY', 'Update')
+        self:RegisterEvent('SEND_MAIL_MONEY_CHANGED', 'Update')
+        self:RegisterEvent('SEND_MAIL_COD_CHANGED', 'Update')
+    else
+        self:UnregisterAllEvents()
+    end
+    self:RegisterFrameEvent('FRAME_OWNER_CHANGED', 'OnShow')
     self:Update()
 end
 
-function MoneyFrame:FRAME_OWNER_CHANGED(_, bagId)
-    if bagId == self.meta.bagId then
-        self:Update()
-    end
-end
-
 function MoneyFrame:Update()
-    local money = ns.Cache:GetOwnerInfo(self.meta.owner).money or 0
-    MoneyFrame_Update(self.Money:GetName(), money, money == 0)
+    if self.meta:IsCached() then
+        local money = Cache:GetOwnerInfo(self.meta.owner).money or 0
+        MoneyFrame_Update(self.Money:GetName(), money, money == 0)
+    else
+        MoneyFrame_UpdateMoney(self.Money)
+    end
 end
 
 function MoneyFrame:OnEnter()
@@ -82,7 +80,7 @@ function MoneyFrame:OnEnter()
         end
     end
 
-    GameTooltip:SetOwner(self, self:GetTop() > (GetScreenHeight() / 2) and 'ANCHOR_BOTTOM' or 'ANCHOR_TOP')
+    ns.AnchorTooltip2(self, 'RIGHT')
     GameTooltip:AddDoubleLine(L['Total'], GetMoneyString(total, true), nil, nil, nil, 1, 1, 1)
     GameTooltip:AddLine(' ')
 
@@ -101,7 +99,6 @@ end
 
 function MoneyFrame:OnClick()
     MoneyInputFrame_OpenPopup(self.Money)
-    self:OnLeave()
 end
 
 function MoneyFrame:OnLeave()
